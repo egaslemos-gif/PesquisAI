@@ -718,6 +718,18 @@ a:hover {
    Responsive Overrides (Mobile)
    ========================================================================== */
 @media (max-width: 768px) {
+    /* Prevent global horizontal scroll */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .app-container, .main-content {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
     /* Main Layout */
     .slo-workspace {
         flex-direction: column !important;
@@ -725,6 +737,7 @@ a:hover {
         margin-top: 1rem !important;
     }
     
+    /* Navigation Sidebar */
     .learning-navigator {
         position: relative !important;
         top: 0 !important;
@@ -737,13 +750,38 @@ a:hover {
         padding-bottom: 1rem !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+    }
+    
+    .learning-navigator .nav-item {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.8rem !important;
+        background: var(--color-gray-50);
+        border: 1px solid var(--color-gray-200);
+        border-radius: var(--radius-full) !important;
+    }
+    
+    .learning-navigator .nav-item.active {
+        background: var(--color-primary-50) !important;
+        border-color: var(--color-primary-300) !important;
+    }
+
+    .learning-navigator .nav-indicator {
+        display: none !important; /* Hide indicator line on pill buttons */
     }
     
     .slo-content {
         padding-bottom: 2rem !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box;
     }
     
     /* Protocol Overview Ribbon */
+    .protocol-overview-ribbon {
+        padding: 1rem !important;
+    }
+
     .protocol-overview-ribbon > div:first-child {
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -759,15 +797,37 @@ a:hover {
         margin-top: 0.5rem !important;
     }
     
-    /* Fix overflowing steps in timeline */
+    /* Improve Steps Section (Timeline) */
     .semantic-timeline-container {
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         justify-content: flex-start !important;
-        padding-bottom: 0.5rem !important;
+        padding-bottom: 1rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        -webkit-overflow-scrolling: touch;
+        /* Hiding scrollbar for cleaner look */
+        scrollbar-width: none; 
+    }
+    
+    .semantic-timeline-container::-webkit-scrollbar {
+        display: none;
     }
     
     .semantic-step-item {
-        min-width: 100px !important;
+        min-width: 75px !important;
+        padding: 0.5rem 0.25rem !important;
+    }
+    
+    .semantic-step-status {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .semantic-step-name {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
     }
 }
