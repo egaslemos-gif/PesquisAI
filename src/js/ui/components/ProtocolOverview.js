@@ -43,7 +43,7 @@ class ProtocolOverview {
 
             if (area || tema) {
                 themeData = `
-                <div style="display: flex; flex-direction: column; gap: 4px; margin-left: auto; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; max-width: 50%;">
+                <div class="theme-data-container" style="display: flex; flex-direction: column; gap: 4px; margin-left: auto; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; max-width: 50%;">
                     ${area ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área: ${area}</div>` : ''}
                     ${tema ? `<div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div>` : ''}
                 </div>`;

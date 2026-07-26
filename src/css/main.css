@@ -713,3 +713,61 @@ a:hover {
     color: var(--color-gray-500);
     font-size: var(--text-sm);
 }
+
+/* ==========================================================================
+   Responsive Overrides (Mobile)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Main Layout */
+    .slo-workspace {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        margin-top: 1rem !important;
+    }
+    
+    .learning-navigator {
+        position: relative !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        border-right: none !important;
+        padding-right: 0 !important;
+        overflow-y: visible !important;
+        border-bottom: 1px solid var(--color-gray-200) !important;
+        padding-bottom: 1rem !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .slo-content {
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Protocol Overview Ribbon */
+    .protocol-overview-ribbon > div:first-child {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .theme-data-container {
+        margin-left: 0 !important;
+        border-left: none !important;
+        padding-left: 0 !important;
+        max-width: 100% !important;
+        border-top: 1px solid var(--color-gray-100) !important;
+        padding-top: 0.5rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    /* Fix overflowing steps in timeline */
+    .semantic-timeline-container {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        justify-content: flex-start !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .semantic-step-item {
+        min-width: 100px !important;
+    }
+}
