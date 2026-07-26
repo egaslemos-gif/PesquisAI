@@ -1,0 +1,53 @@
+{
+  "id": "PR-RL01-OBJECTIVES",
+  "type": "prompt",
+  "title": "Objetivos da Revisão Sistemática/Narrativa",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["rl01", "objetivos"],
+  "usedBy": ["RL-01"],
+  "requires": ["KC-RL01-OBJECTIVES"],
+  "relatedAssets": ["PR-CORE-DECOMPOSITION"],
+  "content": {
+    "promptPattern": "decompose",
+    "objective": "Desdobrar uma Pergunta de Investigação documental em passos exequíveis e de síntese.",
+    "recommendedModels": ["ChatGPT", "Claude 3.5"],
+    "expectedInput": ["Pergunta de Investigação ancorada na RL"],
+    "expectedOutput": {
+      "type": "markdown",
+      "format": "Objetivo Geral e 3 Específicos numerados"
+    },
+    "persona": "Revisor Científico experiente em revisões da literatura.",
+    "context": "A pergunta está fechada. O utilizador precisa de elencar no seu protocolo de revisão o que fará aos artigos extraídos.",
+    "task": "Traduzir a Pergunta num Objetivo Geral de síntese/revisão e desdobrá-la em Específicos.",
+    "promptTemplate": "Atue como {{persona}}.\nPergunta de Investigação: {{input_pergunta}}.\nTarefa: {{task}}.\nLembre-se que numa Revisão Literária os objetivos específicos devem espelhar as partições analíticas da literatura (ex: mapear o conceito A, mapear a população B, cruzar intervenções).\nRestrições:\n{{constraints}}\nDevolva a resposta estruturada em {{outputFormat}}.",
+    "constraints": [
+      "Nunca crie um Objetivo Específico que seja 'Pesquisar bases de dados' ou 'Ler artigos'. Isso é método logístico.",
+      "Assegure a Taxonomia de Bloom."
+    ],
+    "qualityCriteria": [
+      "Os objetivos específicos representam efetivamente a desconstrução da Pergunta."
+    ],
+    "evaluationCriteria": [
+      "O Geral começa por um verbo de síntese/revisão (ex: Analisar, Sintetizar, Mapear)."
+    ],
+    "strategies": {
+      "guided": {
+        "description": "Foca-se em ensinar a escrever os específicos da RL.",
+        "templateVariation": "Indique o Objetivo Geral e sugira 3 tópicos metodológicos. Peça ao utilizador para escrever as frases completas dos Específicos."
+      },
+      "balanced": {
+        "description": "Output integral com justificação teórica.",
+        "templateVariation": "Forneça os objetivos prontos e explique porque é que os específicos escolhidos não são apenas tarefas logísticas."
+      },
+      "direct": {
+        "description": "Foco estrito nas balas formatadas.",
+        "templateVariation": "Forneça a lista hierárquica sem qualquer preâmbulo."
+      }
+    }
+  }
+}

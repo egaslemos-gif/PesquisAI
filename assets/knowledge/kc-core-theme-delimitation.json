@@ -1,0 +1,53 @@
+{
+  "id": "KC-CORE-THEME-DELIMITATION",
+  "type": "knowledge",
+  "title": "Delimitação do Tema",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["tema", "delimitação", "variaveis"],
+  "usedBy": ["RL-01", "PJ-01"],
+  "requires": [],
+  "relatedAssets": [],
+  "content": {
+    "summary": "Técnica de cruzamento de variáveis para afunilar um tema de investigação genérico.",
+    "difficulty": "beginner",
+    "estimatedReadingTime": 3,
+    "concept": "A delimitação metodológica exige o cruzamento do seu tópico genérico de interesse com pelo menos três variáveis de restrição fundamentais: a População (quem?), o Contexto (onde?) e a Intervenção ou Fenómeno (o quê?). Sem este afunilamento geométrico, o tema permanece no plano da abstração literária.",
+    "whyItMatters": "Um tema excessivamente amplo conduz à falácia da abrangência: a tentativa de estudar um fenómeno global, tornando a investigação inexequível no tempo disponível e superficial nos resultados metodológicos.",
+    "whenToUse": "Sempre que estiver na fase embrionária de um protocolo de investigação e sentir que o seu tópico ('Quero estudar a IA na educação') gera centenas de milhares de resultados de pesquisa.",
+    "whenNotToUse": "Não aplicável quando a sua investigação exige mapeamento universal (e.g. scoping reviews latas) ou quando já tem uma Pergunta de Investigação perfeitamente balizada.",
+    "steps": [
+      "Identifique o fenómeno central de interesse.",
+      "Defina a população-alvo precisa (o mais micro possível).",
+      "Restrinja geograficamente ou institucionalmente o contexto de aplicação."
+    ],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "Perceções dos estudantes universitários (População) sobre o uso da IA Generativa (Fenómeno) no ensino superior em Moçambique (Contexto).",
+        "explanation": "O cruzamento de três eixos (Estudantes + IA Generativa + Moçambique) torna a pesquisa viável e acionável."
+      },
+      {
+        "type": "incorrect",
+        "text": "O impacto da Inteligência Artificial na Sociedade.",
+        "explanation": "Demasiado lato. Impossível definir a totalidade da sociedade, todas as métricas de impacto e todas as facetas da IA num único trabalho académico."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "warning",
+        "message": "Escolher um cruzamento de variáveis sobre o qual não se tem qualquer facilidade de acesso a dados ou onde a literatura é totalmente inexistente."
+      }
+    ],
+    "references": [
+      {
+        "title": "Booth, W. C., Colomb, G. G., & Williams, J. M. (2008). The Craft of Research.",
+        "url": ""
+      }
+    ]
+  }
+}

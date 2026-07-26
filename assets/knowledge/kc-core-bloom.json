@@ -1,0 +1,48 @@
+{
+  "id": "KC-CORE-BLOOM",
+  "type": "knowledge",
+  "title": "Verbos de Ação na Taxonomia de Bloom",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["objetivos", "bloom", "verbos"],
+  "usedBy": ["RL-01", "PJ-01", "AD-01"],
+  "requires": [],
+  "relatedAssets": [],
+  "content": {
+    "summary": "Mapeamento cognitivo para formular Objetivos Gerais e Específicos hierárquicos.",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 3,
+    "concept": "A Taxonomia de Bloom original ordena o nível de complexidade cognitiva em níveis. O uso do verbo correto no infinitivo determina a profundidade que exige da investigação. Verbos como 'Listar', 'Identificar' ou 'Descrever' cobrem níveis iniciais (Conhecimento, Compreensão). Verbos como 'Analisar', 'Comparar', 'Sintetizar' ou 'Avaliar' denotam pensamento crítico avançado, fundamental no ensino superior.",
+    "whyItMatters": "O verbo utilizado num objetivo condiciona toda a secção de Resultados e Discussão de uma tese. Se prometer 'Avaliar', mas apenas descrever dados estatísticos, o avaliador científico invalidará a investigação pelo incumprimento promissório do objetivo delineado.",
+    "whenToUse": "Sempre que estiver a escrever a lista de Objetivos Específicos e o Objetivo Geral de um plano metodológico.",
+    "whenNotToUse": "",
+    "steps": [
+      "No Objetivo Geral: Utilize um verbo poderoso (ex: Analisar, Sintetizar, Avaliar).",
+      "Nos Objetivos Específicos Iniciais: Utilize verbos focados na exploração inicial (ex: Identificar, Descrever, Mapear).",
+      "Nos Objetivos Específicos Finais: Escale para o pico cognitivo (ex: Cruzar, Comparar, Explicar)."
+    ],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "1. Mapear as evidências... 2. Analisar as abordagens metodológicas... 3. Avaliar as lacunas da investigação atual.",
+        "explanation": "Note a progressão cognitiva (Mapear -> Analisar -> Avaliar), garantindo uma investigação que se aprofunda ao longo dos capítulos."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "error",
+        "message": "Usar verbos ambíguos de intenção imensurável como 'Compreender', 'Aprender', 'Saber' ou 'Estudar'. Na ciência, o que não pode ser medido publicamente num texto não serve como objetivo tático."
+      }
+    ],
+    "references": [
+      {
+        "title": "Krathwohl, D. R. (2002). A revision of Bloom's taxonomy: An overview. Theory into practice.",
+        "url": ""
+      }
+    ]
+  }
+}

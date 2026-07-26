@@ -1,0 +1,28 @@
+{
+  "types": [
+    "knowledge",
+    "prompt",
+    "review",
+    "checklist",
+    "tool",
+    "example"
+  ],
+  "tags": [
+    "tema",
+    "pico",
+    "rl01",
+    "objetivos",
+    "delimitacao",
+    "pergunta-investigacao",
+    "variaveis"
+  ],
+  "statuses": [
+    "draft",
+    "review",
+    "approved",
+    "deprecated"
+  ],
+  "languages": [
+    "pt-PT"
+  ]
+}

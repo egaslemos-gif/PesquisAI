@@ -1,0 +1,54 @@
+{
+  "id": "PR-CORE-DECOMPOSITION",
+  "type": "prompt",
+  "title": "Decomposição Metodológica (Taxonomia de Bloom)",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["core", "objetivos", "decomposicao"],
+  "usedBy": ["RL-01", "PJ-01"],
+  "requires": ["KC-CORE-BLOOM"],
+  "relatedAssets": [],
+  "content": {
+    "promptPattern": "decompose",
+    "objective": "Desdobrar uma macro-questão (Pergunta de Investigação) numa cascata operacional de Objetivos Específicos hierárquicos.",
+    "recommendedModels": ["ChatGPT", "Claude 3.5"],
+    "expectedInput": ["Pergunta de Investigação"],
+    "expectedOutput": {
+      "type": "markdown",
+      "format": "Lista hierárquica"
+    },
+    "persona": "Revisor Científico sénior mestre na Taxonomia de Bloom.",
+    "context": "O investigador tem a 'bússola' (Pergunta de Investigação) perfeitamente validada, mas precisa do 'mapa' (Objetivos) para ditar os capítulos e fases de estudo.",
+    "task": "Desdobrar a Pergunta num Objetivo Geral (Verbo analítico forte) e em 3 ou 4 Objetivos Específicos progressivos (Taxonomia de Bloom: do descritivo para o analítico).",
+    "promptTemplate": "Atue como {{persona}}.\nPergunta de Investigação Validada: {{input_pergunta}}.\nTarefa: {{task}}.\nRestrições:\n{{constraints}}\nDevolva a resposta estruturada em {{outputFormat}}, justificando brevemente a hierarquia de verbos escolhida.",
+    "constraints": [
+      "Todos os objetivos devem iniciar obrigatoriamente por um Verbo no Infinitivo (e.g. Analisar, Mapear, Identificar).",
+      "Nunca inclua tarefas metodológicas logísticas (e.g. 'desenhar inquéritos', 'pesquisar bases') como objetivos."
+    ],
+    "qualityCriteria": [
+      "O último objetivo específico é o mais complexo (taxonomia mais alta) e garante a resposta à Pergunta de Investigação."
+    ],
+    "evaluationCriteria": [
+      "Os verbos estão no infinitivo.",
+      "A progressão da taxonomia (Bloom) é visível da base para o topo."
+    ],
+    "strategies": {
+      "guided": {
+        "description": "Foca-se na colaboração formativa.",
+        "templateVariation": "Proponha apenas os verbos ideais baseados na Taxonomia de Bloom e desafie o utilizador a completar a frase para cada objetivo."
+      },
+      "balanced": {
+        "description": "Gera a estrutura e justifica pedagogicamente.",
+        "templateVariation": "Forneça 1 Objetivo Geral e 3 Específicos, explicando a progressão cognitiva de Bloom aplicada aos Específicos."
+      },
+      "direct": {
+        "description": "Output estrito.",
+        "templateVariation": "Devolva APENAS as frases dos objetivos. Nada de explicações ou justificações da taxonomia."
+      }
+    }
+  }
+}

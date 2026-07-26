@@ -1,0 +1,64 @@
+{
+  "id": "REV-RL01-OBJECTIVES",
+  "type": "review",
+  "title": "Avaliação Metodológica dos Objetivos",
+  "version": "1.0",
+  "status": "approved",
+  "maturity": "reviewed",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["objetivos", "avaliação", "rl-01", "etapa-3"],
+  "usedBy": ["RL-01"],
+  "requires": [],
+  "relatedAssets": ["KC-RL01-OBJECTIVES", "KC-CORE-BLOOM"],
+  "content": {
+    "assessmentType": "ai",
+    "validationPattern": "methodological",
+    "requiresLLM": true,
+    "automatic": false,
+    "learningOutcome": "O investigador alinha perfeitamente o objetivo geral com a pergunta e constrói uma escada cognitiva nos objetivos específicos.",
+    "criteria": [
+      {
+        "severity": "fail",
+        "confidence": "high",
+        "criterion": "O Objetivo Geral está desalinhado da Pergunta de Partida, ou existem múltiplos Objetivos Gerais.",
+        "feedback": "Há uma quebra de coerência. A regra de ouro é: 1 Pergunta = 1 Objetivo Geral. O objetivo geral tem de espelhar diretamente a sua pergunta principal.",
+        "recommendation": "Reescreva o Objetivo Geral copiando a Pergunta de Partida, substituindo a palavra interrogativa por um verbo abrangente no infinitivo (ex: 'Compreender', 'Analisar').",
+        "remediation": {
+          "knowledge": ["KC-RL01-OBJECTIVES"],
+          "prompt": ["PR-RL01-OBJECTIVES"],
+          "example": [],
+          "tool": []
+        }
+      },
+      {
+        "severity": "warning",
+        "confidence": "medium",
+        "criterion": "Os Objetivos Específicos estão presentes, mas utilizam verbos não avaliáveis (ex: 'Saber', 'Entender') ou não seguem uma ordem progressiva.",
+        "feedback": "Os verbos escolhidos são ambíguos. Como é que se prova que se 'entendeu' algo? Além disso, parece saltar para a 'Avaliação' antes da 'Identificação'.",
+        "recommendation": "Consulte a Taxonomia de Bloom. Substitua verbos internos por verbos de ação observável (Identificar, Descrever, Sintetizar). Reordene do mais simples para o mais complexo.",
+        "remediation": {
+          "knowledge": ["KC-CORE-BLOOM"],
+          "prompt": ["PR-CORE-DECOMPOSITION"],
+          "example": [],
+          "tool": []
+        }
+      },
+      {
+        "severity": "pass",
+        "confidence": "high",
+        "criterion": "Existe um único Objetivo Geral correlacionado com a pergunta, suportado por 3 a 5 Objetivos Específicos com verbos operacionais progressivos.",
+        "feedback": "Os seus objetivos formam um esqueleto metodológico sólido. A escada cognitiva está clara e garantirá a correta estruturação do corpo do documento.",
+        "recommendation": "Trabalho metodológico perfeito. Avance para a definição de Palavras-Chave e Motores de Busca.",
+        "remediation": {
+          "knowledge": [],
+          "prompt": [],
+          "example": [],
+          "tool": []
+        }
+      }
+    ]
+  }
+}

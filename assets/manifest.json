@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-07-26",
+  "summary": {
+    "knowledge": 7,
+    "prompt": 6,
+    "checklist": 3,
+    "review": 3,
+    "tool": 0,
+    "example": 0
+  },
+  "assets": [
+    "knowledge/kc-core-theme-delimitation.json",
+    "knowledge/kc-rl01-theme-selection.json",
+    "knowledge/kc-core-pico.json",
+    "knowledge/kc-core-spider.json",
+    "knowledge/kc-rl01-research-question.json",
+    "knowledge/kc-core-bloom.json",
+    "knowledge/kc-rl01-objectives.json",
+    "prompt/pr-core-brainstorming.json",
+    "prompt/pr-rl01-theme-brainstorming.json",
+    "prompt/pr-core-structuring.json",
+    "prompt/pr-rl01-research-question.json",
+    "prompt/pr-core-decomposition.json",
+    "prompt/pr-rl01-objectives.json",
+    "checklist/chk-rl01-theme.json",
+    "checklist/chk-rl01-question.json",
+    "checklist/chk-rl01-objectives.json",
+    "review/rev-rl01-theme.json",
+    "review/rev-rl01-question.json",
+    "review/rev-rl01-objectives.json"
+  ]
+}

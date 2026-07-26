@@ -1,0 +1,49 @@
+{
+  "id": "CHK-RL01-THEME",
+  "type": "checklist",
+  "title": "Validação da Delimitação do Tema",
+  "version": "1.0",
+  "status": "approved",
+  "maturity": "reviewed",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["tema", "delimitação", "rl-01", "etapa-1"],
+  "usedBy": ["RL-01"],
+  "requires": [],
+  "relatedAssets": ["KC-CORE-THEME-DELIMITATION"],
+  "content": {
+    "assessmentType": "self",
+    "difficulty": "beginner",
+    "estimatedTime": 2,
+    "learningOutcome": "O investigador consegue avaliar se o seu tema abandonou o nível de 'área geral' e assumiu recortes específicos de população e contexto.",
+    "passThreshold": 1.0,
+    "items": [
+      {
+        "id": "CHK-THEME-001",
+        "criterion": "O tema especifica claramente a população ou objeto de estudo?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "Se o seu tema for 'A inteligência artificial na educação', a população ainda não está definida. Qual é o nível de ensino? Que tipo de alunos?",
+        "relatedKnowledge": ["KC-CORE-THEME-DELIMITATION"]
+      },
+      {
+        "id": "CHK-THEME-002",
+        "criterion": "O tema inclui uma delimitação geográfica ou de contexto?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "Um estudo sobre 'Educação em Moçambique' é diferente de 'Educação Primária na província da Zambézia'.",
+        "relatedKnowledge": ["KC-RL01-THEME-SELECTION"]
+      },
+      {
+        "id": "CHK-THEME-003",
+        "criterion": "O tema foge a generalidades e foca-se num problema exequível?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "Temas como 'A importância da leitura' não são exequíveis. 'O impacto da leitura lúdica no primeiro ciclo' é muito mais concreto.",
+        "relatedKnowledge": ["KC-CORE-THEME-DELIMITATION"]
+      }
+    ]
+  }
+}

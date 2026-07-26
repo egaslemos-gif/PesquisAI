@@ -1,0 +1,53 @@
+{
+  "id": "PR-CORE-BRAINSTORMING",
+  "type": "prompt",
+  "title": "Brainstorming e Expansão Heurística",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["brainstorming", "core", "ideacao"],
+  "usedBy": ["RL-01", "PJ-01"],
+  "requires": [],
+  "relatedAssets": [],
+  "content": {
+    "promptPattern": "brainstorm",
+    "objective": "Expandir um conceito base não estruturado numa multiplicidade de caminhos exploratórios.",
+    "recommendedModels": ["ChatGPT", "Claude 3.5"],
+    "expectedInput": ["Tema inicial ou palavra-chave"],
+    "expectedOutput": {
+      "type": "markdown",
+      "format": "Lista de opções divergentes"
+    },
+    "persona": "Orientador metodológico socrático especializado em ideação académica.",
+    "context": "O utilizador possui uma ideia muito vaga e precisa de observar o espetro completo de possibilidades.",
+    "task": "Gerar caminhos divergentes a partir do conceito inicial, mapeando diferentes ângulos (tecnológico, social, económico, etc.).",
+    "promptTemplate": "Atue como {{persona}}.\nO investigador está na fase de exploração inicial.\nTema/Ideia Base: {{input}}.\nTarefa: {{task}}\nRestrições:\n{{constraints}}\nFormato de saída: {{outputFormat}}.",
+    "constraints": [
+      "Gere opções mutuamente exclusivas.",
+      "Não julgue a qualidade da ideia base, apenas expanda-a."
+    ],
+    "qualityCriteria": [
+      "As opções geradas demonstram pensamento lateral profundo."
+    ],
+    "evaluationCriteria": [
+      "A resposta usou formatação estruturada (Markdown)."
+    ],
+    "strategies": {
+      "guided": {
+        "description": "Exploração interativa passo-a-passo.",
+        "templateVariation": "Em vez de fornecer opções imediatas, faça 3 perguntas exploratórias ao investigador para o forçar a pensar."
+      },
+      "balanced": {
+        "description": "Geração direta de caminhos heurísticos.",
+        "templateVariation": "Gere 5 ramificações do conceito, explicando brevemente o potencial científico de cada uma."
+      },
+      "direct": {
+        "description": "Devolve apenas a lista, sem textos explicativos.",
+        "templateVariation": "Liste 10 variações do tema num formato bullet-points. Zero introduções."
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "CHK-RL01-QUESTION",
+  "type": "checklist",
+  "title": "Validação da Pergunta de Partida",
+  "version": "1.0",
+  "status": "approved",
+  "maturity": "reviewed",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["pergunta", "pico", "spider", "rl-01", "etapa-2"],
+  "usedBy": ["RL-01"],
+  "requires": [],
+  "relatedAssets": ["KC-CORE-PICO", "KC-CORE-SPIDER"],
+  "content": {
+    "assessmentType": "self",
+    "difficulty": "intermediate",
+    "estimatedTime": 3,
+    "learningOutcome": "O investigador garante que a pergunta não é passível de resposta binária e contém as variáveis principais da investigação estruturadas.",
+    "passThreshold": 1.0,
+    "items": [
+      {
+        "id": "CHK-QST-001",
+        "criterion": "A pergunta é aberta e impossível de responder apenas com 'Sim' ou 'Não'?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "Se a pergunta puder ser respondida com 'Sim', o seu estudo morre na resposta. Use formulações como 'De que modo...', 'Qual o impacto...', 'Como...'.",
+        "relatedKnowledge": ["KC-RL01-RESEARCH-QUESTION"]
+      },
+      {
+        "id": "CHK-QST-002",
+        "criterion": "A pergunta identifica inequivocamente a População/Amostra?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "A pergunta deve clarificar com quem o estudo será conduzido.",
+        "relatedKnowledge": ["KC-CORE-PICO"]
+      },
+      {
+        "id": "CHK-QST-003",
+        "criterion": "A pergunta especifica a Intervenção/Fenómeno a ser estudado?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "O que é que está a acontecer à População que motiva o estudo?",
+        "relatedKnowledge": ["KC-CORE-SPIDER"]
+      }
+    ]
+  }
+}

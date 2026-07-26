@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia do Investigador — Universidade Licungo</title>
+    <meta name="description" content="A Inteligência Artificial orienta. O investigador decide. Assistente metodológico para investigações académicas.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./src/assets/UL.png">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="stylesheet" href="./src/css/components.css">
+</head>
+<body>
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- App Shell Layout -->
+    <div class="app-container">
+        <!-- Header -->
+        <header id="app-header" class="header">
+            <div class="header-content">
+                
+                <!-- Zona 1: Marca (Left) -->
+                <div class="header-zone zone-brand">
+                    <div class="logo" id="app-logo" style="cursor: pointer;" title="Voltar ao Início">
+                        <span class="logo-icon"><img src="./src/assets/UL.png" alt="Universidade Licungo"></span>
+                        <div class="logo-text-group">
+                            <span class="logo-text">Guia do Investigador</span>
+                            <span class="logo-subtitle">Universidade Licungo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zona 2: Navegação (Center) -->
+                <div class="header-zone zone-nav" id="header-zone-nav">
+                    <button id="btn-go-home" class="btn-app-bar active">
+                        <span class="icon-slot" data-icon="home"></span> As minhas investigações
+                    </button>
+                    <button id="btn-search-artifacts" class="search-bar-btn" title="Pesquisar (Ctrl+K)">
+                        <span class="icon-slot" data-icon="search"></span> Pesquisar...
+                    </button>
+                    <button id="btn-enter-selection-mode" class="btn-app-bar hidden" style="color: var(--color-gray-500);">
+                        Selecionar projetos
+                    </button>
+                    <span id="autosave-indicator" class="autosave-indicator hidden">
+                        <span class="icon-slot" data-icon="checkCircle"></span> Rascunho guardado
+                    </span>
+                </div>
+
+                <!-- Zona Seleção (Center/Right contextual, inicialmente escondida) -->
+                <div class="header-zone zone-selection hidden" id="header-zone-selection" style="flex: 1; justify-content: space-between; padding-left: var(--space-4);">
+                    <div style="display: flex; align-items: center; gap: var(--space-4);">
+                        <button id="btn-select-all-results" class="btn-app-bar" style="color: var(--color-primary);">
+                            <span class="icon-slot" data-icon="checkSquare"></span> Selecionar resultados
+                        </button>
+                        <span id="selection-counter" style="font-size: var(--text-sm); font-weight: 500; color: var(--color-gray-700);">0 investigações selecionadas</span>
+                    </div>
+                    <div style="display: flex; gap: var(--space-2); align-items: center;">
+                        <button id="btn-bulk-favorite" class="btn btn-secondary" title="Favoritar">⭐ Favoritar</button>
+                        <button id="btn-bulk-delete" class="btn btn-secondary" style="color: var(--color-error); border-color: var(--color-error-light); background: #fef2f2;" title="Eliminar">🗑 Eliminar</button>
+                        <button id="btn-exit-selection-mode" class="btn btn-ghost" style="margin-left: var(--space-2);">Cancelar</button>
+                    </div>
+                </div>
+
+                <!-- Zona 3: Utilizador (Right) -->
+                <div class="header-zone zone-user" id="header-zone-user">
+                    <div class="header-rid-badge" title="Research Identity">
+                        <span class="rid-label">RID</span>
+                        <span class="rid-value" id="rid-display-value">#•••</span>
+                    </div>
+
+                    <div class="user-badge" id="workflow-badge">
+                        <span class="icon-slot" data-icon="user"></span> Investigador
+                    </div>
+                    
+                    <button id="btn-reset-project" class="btn btn-primary btn-app-action" title="Novo Projeto">
+                        <span class="icon-slot" data-icon="plus"></span>
+                        <span class="btn-text">Novo Projeto</span>
+                    </button>
+                </div>
+                
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="main-content" class="main-content">
+            <!-- This area will be populated by appShell.js -->
+        </main>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/docx@7.8.2/build/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <!-- Data Modules (Constants) -->
+    <script src="./src/data/prompts.js?v=12"></script>
+    <script src="./src/data/tools.js?v=12"></script>
+    <script src="./src/data/workflows.js?v=12"></script>
+
+    <!-- Icons Utility -->
+    <script src="./src/js/ui/icons.js?v=12"></script>
+
+    <!-- Core & Services -->
+    <script src="./src/js/core/eventBus.js?v=12"></script>
+    <script src="./src/js/services/storage.js?v=12"></script>
+    <script src="./src/js/core/researchIdentity.js?v=12"></script>
+    <script src="./src/js/core/researchEvents.js?v=12"></script>
+    <script src="./src/js/services/toast.js?v=12"></script>
+    <script src="./src/js/services/clipboard.js?v=12"></script>
+    <script src="./src/js/services/template.js?v=12"></script>
+    <script src="./src/js/services/validation.js?v=12"></script>
+    <script src="./src/js/services/document.js?v=12"></script>
+    <script src="./src/js/core/reviewEngine.js?v=12"></script>
+    <script src="./src/js/core/assetResolver.js?v=12"></script>
+    <script src="./src/js/core/renderingEngine.js?v=12"></script>
+    <script src="./src/js/core/panelRegistry.js?v=12"></script>
+    <script src="./src/js/core/workspace.js?v=12"></script>
+    <script src="./src/js/core/engine.js?v=12"></script>
+
+    <!-- Methodology Intelligence Engine -->
+    <script src="./src/js/services/methodology/MethodologyEngine.js?v=12"></script>
+    <script src="./src/js/services/methodology/rules/theme.rule.js?v=12"></script>
+    <script src="./src/js/services/methodology/rules/question.rule.js?v=12"></script>
+    <script src="./src/js/services/methodology/rules/objective.rule.js?v=12"></script>
+    <script src="./src/js/services/methodology/rules/keywords.rule.js?v=12"></script>
+
+    <!-- UI Components -->
+    <script src="./src/js/ui/components/ProjectExplorer.js?v=12"></script>
+    <script src="./src/js/ui/components/ProtocolOverview.js?v=12"></script>
+    <script src="./src/js/ui/progressView.js?v=12"></script>
+    <script src="./src/js/ui/panels/OutcomePanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/KnowledgePanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/PromptPanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/ChecklistPanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/ReviewPanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/ExamplesPanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/ToolsPanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/ArtifactPanel.js?v=12"></script>
+    <script src="./src/js/ui/panels/NextStepPanel.js?v=12"></script>
+    <script src="./src/js/ui/stepView.js?v=12"></script>
+    <script src="./src/js/ui/appShell.js?v=12"></script>
+    <script src="./src/js/ui/commandPalette.js?v=12"></script>
+    <script src="./src/js/ui/reviewModal.js?v=12"></script>
+    <script src="./src/js/ui/events.js?v=12"></script>
+
+    <!-- Entry Point -->
+    <script src="./src/js/app.js?v=12"></script>
+</body>
+</html>

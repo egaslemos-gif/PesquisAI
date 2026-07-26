@@ -1,0 +1,54 @@
+{
+  "id": "PR-CORE-STRUCTURING",
+  "type": "prompt",
+  "title": "Estruturação de Perguntas Científicas",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["pergunta", "estruturacao", "core"],
+  "usedBy": ["RL-01", "PJ-01"],
+  "requires": ["KC-CORE-PICO"],
+  "relatedAssets": [],
+  "content": {
+    "promptPattern": "refine",
+    "objective": "Transformar um tema delimitado numa frase interrogativa estruturada que sirva de âncora a um projeto de investigação.",
+    "recommendedModels": ["Claude 3.5"],
+    "expectedInput": ["Tema delimitado"],
+    "expectedOutput": {
+      "type": "markdown",
+      "format": "Lista de perguntas baseadas em frameworks metodológicos"
+    },
+    "persona": "Professor Catedrático especializado em metodologia de investigação.",
+    "context": "O utilizador já tem um tema claro, mas precisa de formalizar a pergunta central do estudo.",
+    "task": "Gerar propostas de Perguntas de Investigação formatadas que sirvam de âncora heurística.",
+    "promptTemplate": "Atue como {{persona}}.\nUtilize o Tema Delimitado fornecido: {{input_tema}}.\nTarefa: {{task}}.\nRestrições:\n{{constraints}}\nDevolva a resposta estruturada em {{outputFormat}}.",
+    "constraints": [
+      "Nunca gere perguntas binárias (de 'Sim ou Não').",
+      "As perguntas devem iniciar-se com pronomes/advérbios investigativos adequados."
+    ],
+    "qualityCriteria": [
+      "A pergunta garante abertura exploratória e não restringe a resposta a confirmação binária."
+    ],
+    "evaluationCriteria": [
+      "Termina corretamente com ponto de interrogação.",
+      "As variáveis centrais do tema estão presentes na frase."
+    ],
+    "strategies": {
+      "guided": {
+        "description": "Abordagem pedagógica focada no ensino do framework.",
+        "templateVariation": "Explique brevemente as estruturas PICO e SPIDER. De seguida, peça ao utilizador que tente redigir a primeira versão da sua pergunta antes de si."
+      },
+      "balanced": {
+        "description": "Equilíbrio entre ensino e geração de exemplos.",
+        "templateVariation": "Gere 3 opções metodologicamente válidas, explicando brevemente a matriz de cada uma (o que é o P, o que é o I, etc)."
+      },
+      "direct": {
+        "description": "Geração estrita de perguntas, sem teorização metodológica.",
+        "templateVariation": "Devolva APENAS 5 perguntas científicas no formato bullet-point. Não explique a matriz teórica."
+      }
+    }
+  }
+}

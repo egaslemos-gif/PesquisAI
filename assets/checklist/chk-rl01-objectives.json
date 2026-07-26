@@ -1,0 +1,49 @@
+{
+  "id": "CHK-RL01-OBJECTIVES",
+  "type": "checklist",
+  "title": "Validação dos Objetivos",
+  "version": "1.0",
+  "status": "approved",
+  "maturity": "reviewed",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["objetivos", "bloom", "rl-01", "etapa-3"],
+  "usedBy": ["RL-01"],
+  "requires": [],
+  "relatedAssets": ["KC-CORE-BLOOM", "KC-RL01-OBJECTIVES"],
+  "content": {
+    "assessmentType": "self",
+    "difficulty": "beginner",
+    "estimatedTime": 2,
+    "learningOutcome": "O investigador consegue definir um objetivo geral abrangente e objetivos específicos sequenciais usando a Taxonomia de Bloom.",
+    "passThreshold": 1.0,
+    "items": [
+      {
+        "id": "CHK-OBJ-001",
+        "criterion": "Existe apenas um Objetivo Geral que responde diretamente à Pergunta de Partida?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "O objetivo geral é a tradução afirmativa (a iniciar num verbo no infinitivo) da sua pergunta.",
+        "relatedKnowledge": ["KC-RL01-OBJECTIVES"]
+      },
+      {
+        "id": "CHK-OBJ-002",
+        "criterion": "Os Objetivos Específicos iniciam-se todos com verbos no infinitivo (ex: Analisar, Identificar, Propor)?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "Verifique a primeira palavra de cada objetivo.",
+        "relatedKnowledge": ["KC-CORE-BLOOM"]
+      },
+      {
+        "id": "CHK-OBJ-003",
+        "criterion": "A ordem dos verbos segue uma lógica de complexidade crescente?",
+        "type": "boolean",
+        "mandatory": true,
+        "help": "Normalmente começamos por 'Identificar' ou 'Descrever', depois 'Analisar' ou 'Comparar', e terminamos em 'Propor', 'Avaliar' ou 'Sintetizar'.",
+        "relatedKnowledge": ["KC-CORE-BLOOM"]
+      }
+    ]
+  }
+}

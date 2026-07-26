@@ -1,0 +1,55 @@
+{
+  "id": "PR-RL01-THEME-BRAINSTORMING",
+  "type": "prompt",
+  "title": "Delimitação do Tema na RL",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["rl01", "tema", "delimitação"],
+  "usedBy": ["RL-01"],
+  "requires": ["KC-CORE-THEME-DELIMITATION", "KC-RL01-THEME-SELECTION"],
+  "relatedAssets": ["PR-CORE-BRAINSTORMING"],
+  "content": {
+    "promptPattern": "refine",
+    "objective": "Ajudar o investigador a afunilar um tema de investigação através do cruzamento de variáveis de restrição.",
+    "recommendedModels": ["Claude 3.5", "ChatGPT"],
+    "expectedInput": ["Tópicos ou interesses genéricos"],
+    "expectedOutput": {
+      "type": "markdown",
+      "format": "3 Alternativas de delimitação com justificação"
+    },
+    "persona": "Orientador metodológico de ensino superior exigente.",
+    "context": "O investigador introduziu um tema demasiado abrangente para uma Revisão da Literatura e precisa de cruzar População + Contexto + Fenómeno para garantir exequibilidade.",
+    "task": "Ajudar a delimitar e afunilar estes interesses genéricos para um Tema de Investigação exequível, propondo alternativas focadas.",
+    "promptTemplate": "Atue como {{persona}}.\nUtilize os seguintes tópicos ou interesses genéricos introduzidos pelo investigador: {{input_tema}}.\nA sua tarefa é {{task}}.\nRestrições:\n{{constraints}}\nDevolva a sua resposta em Markdown, apresentando cada alternativa seguida de uma breve justificação sobre a viabilidade metodológica de cada uma na perspetiva de uma Revisão da Literatura.",
+    "constraints": [
+      "Nunca escolha o tema final pelo investigador.",
+      "Forneça obrigatoriamente 3 alternativas de delimitação.",
+      "Utilize explicitamente a técnica de cruzamento de variáveis (População + Contexto)."
+    ],
+    "qualityCriteria": [
+      "As alternativas não são demasiado amplas ('A IA no Mundo') nem demasiado restritas ('A IA na turma 3 do professor X')."
+    ],
+    "evaluationCriteria": [
+      "Cada alternativa indica explicitamente a população, o fenómeno e o contexto.",
+      "Justificações são cientificamente fundamentadas."
+    ],
+    "strategies": {
+      "guided": {
+        "description": "Ensina a pensar no afunilamento em vez de fornecer logo a resposta.",
+        "templateVariation": "Em vez de fornecer logo 3 opções, pergunte ao investigador: 'Porque escolheu esta área?' e 'Qual é o contexto ou população exata que lhe desperta mais interesse?'. Aguarde a resposta."
+      },
+      "balanced": {
+        "description": "Padrão ótimo. Fornece opções estruturadas.",
+        "templateVariation": "O template base é aplicado na íntegra."
+      },
+      "direct": {
+        "description": "Sem explicações, apenas opções concretas.",
+        "templateVariation": "Devolva APENAS as 5 opções num formato de lista numerada, sem qualquer justificação ou introdução."
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "KC-RL01-OBJECTIVES",
+  "type": "knowledge",
+  "title": "A Cascata de Objetivos na Revisão",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["rl01", "revisao-literatura", "objetivos"],
+  "usedBy": ["RL-01"],
+  "requires": ["KC-CORE-BLOOM"],
+  "relatedAssets": [],
+  "content": {
+    "summary": "Operacionalização da Pergunta de Investigação em marcos acionáveis.",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 3,
+    "concept": "Numa Revisão, o Objetivo Geral é a tradução em ação afirmativa da sua Pergunta de Investigação. Os Objetivos Específicos (3 a 5 marcos) representam o desdobramento das peças fundamentais que necessitam de ser compreendidas para cumprir o desígnio geral.",
+    "whyItMatters": "Sem objetivos específicos, o investigador não sabe por onde começar a arrumar a literatura recolhida. Eles atuam como as divisórias heurísticas do estado da arte.",
+    "whenToUse": "Sempre que concluir a Pergunta de Investigação (Etapa 3) numa Revisão, antes de definir a equação de pesquisa.",
+    "whenNotToUse": "",
+    "steps": [
+      "Traduza a Pergunta (ex: 'Qual o impacto...') num Objetivo Geral afirmativo (ex: 'Analisar o impacto...').",
+      "Crie o Objetivo Específico 1 focando-se no conceito-base.",
+      "Crie o Objetivo Específico 2 focando-se na população ou intervenção.",
+      "Crie o Objetivo Específico 3 focado no resultado metodológico pretendido (Síntese, Avaliação)."
+    ],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "OG: Avaliar a evidência científica do impacto do sono na retenção cognitiva. OE1: Mapear os modelos neurológicos do sono estudados atualmente; OE2: Identificar a correlação das horas de sono e o GPA académico; OE3: Sintetizar as recomendações de literacia do sono na comunidade escolar.",
+        "explanation": "Formam um bloco sólido, progressivo e centrado em resultados académicos medíveis."
+      },
+      {
+        "type": "incorrect",
+        "text": "OG: Perceber o sono. OE1: Pesquisar na B-on artigos sobre o sono; OE2: Ler os abstracts; OE3: Fazer uma tabela no excel com os 30 artigos.",
+        "explanation": "As listadas nos específicos são **tarefas metodológicas/logísticas**, não são objetivos intelectuais de desenvolvimento da pesquisa."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "error",
+        "message": "Escrever passos práticos da metodologia (ex: 'Definir equações de pesquisa', 'Entrevistar doentes') como se fossem Objetivos Específicos."
+      }
+    ],
+    "references": []
+  }
+}

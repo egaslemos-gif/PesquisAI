@@ -1,0 +1,64 @@
+{
+  "id": "REV-RL01-QUESTION",
+  "type": "review",
+  "title": "Avaliação Metodológica da Pergunta",
+  "version": "1.0",
+  "status": "approved",
+  "maturity": "reviewed",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["pergunta", "avaliação", "rl-01", "etapa-2"],
+  "usedBy": ["RL-01"],
+  "requires": [],
+  "relatedAssets": ["KC-RL01-RESEARCH-QUESTION"],
+  "content": {
+    "assessmentType": "ai",
+    "validationPattern": "methodological",
+    "requiresLLM": true,
+    "automatic": false,
+    "learningOutcome": "O investigador consegue formular uma pergunta de investigação estruturada com PICO/SPIDER.",
+    "criteria": [
+      {
+        "severity": "fail",
+        "confidence": "high",
+        "criterion": "A pergunta está formulada de forma a que a resposta possível seja apenas 'Sim' ou 'Não'.",
+        "feedback": "A sua pergunta (ex: 'O ensino online é bom?') encerra a investigação imediatamente na resposta. A investigação exige processos. Deve usar pronomes interrogativos abertos.",
+        "recommendation": "Altere a estrutura para: 'De que forma...', 'Qual o impacto...', 'Como é que...'.",
+        "remediation": {
+          "knowledge": ["KC-RL01-RESEARCH-QUESTION"],
+          "prompt": ["PR-RL01-RESEARCH-QUESTION"],
+          "example": [],
+          "tool": []
+        }
+      },
+      {
+        "severity": "warning",
+        "confidence": "medium",
+        "criterion": "A pergunta é aberta mas omite uma das variáveis nucleares (População, Intervenção ou Contexto).",
+        "feedback": "A sua formulação é um bom ponto de partida, mas ao omitir a população ou o contexto, arrisca-se a perder o foco durante a revisão da literatura.",
+        "recommendation": "Introduza explicitamente na frase final em que contexto geográfico ou populacional o estudo se insere.",
+        "remediation": {
+          "knowledge": ["KC-CORE-PICO"],
+          "prompt": ["PR-CORE-STRUCTURING"],
+          "example": [],
+          "tool": []
+        }
+      },
+      {
+        "severity": "pass",
+        "confidence": "high",
+        "criterion": "A pergunta é aberta, relacional e contém as dimensões fundamentais.",
+        "feedback": "A formulação é excelente. Evidencia maturidade científica e estabelece uma base perfeitamente delimitada para a pesquisa bibliográfica.",
+        "recommendation": "Avance para o desdobramento desta pergunta em Objetivos.",
+        "remediation": {
+          "knowledge": [],
+          "prompt": [],
+          "example": [],
+          "tool": []
+        }
+      }
+    ]
+  }
+}

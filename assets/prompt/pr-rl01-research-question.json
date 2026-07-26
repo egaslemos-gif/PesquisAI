@@ -1,0 +1,53 @@
+{
+  "id": "PR-RL01-RESEARCH-QUESTION",
+  "type": "prompt",
+  "title": "A Pergunta da Revisão Bibliográfica",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["rl01", "pergunta", "pico", "spider"],
+  "usedBy": ["RL-01"],
+  "requires": ["KC-RL01-RESEARCH-QUESTION"],
+  "relatedAssets": ["PR-CORE-STRUCTURING"],
+  "content": {
+    "promptPattern": "refine",
+    "objective": "Forçar a criação de uma pergunta de investigação altamente cirúrgica orientada para a futura extração documental de bases de dados (Revisão da Literatura).",
+    "recommendedModels": ["Claude 3.5"],
+    "expectedInput": ["Tema da Revisão"],
+    "expectedOutput": {
+      "type": "markdown",
+      "format": "Lista de propostas baseadas em PICO ou SPIDER"
+    },
+    "persona": "Professor Catedrático especializado em metodologia de revisões sistemáticas e narrativas.",
+    "context": "O investigador precisa de formalizar a âncora da sua Revisão. Sendo uma RL, a pergunta ditará a *string de pesquisa*. Perguntas vagas ('O que é a IA?') arruinarão o estudo.",
+    "task": "Gerar 3 propostas de Perguntas de Investigação formatadas especificamente para uma revisão da literatura.",
+    "promptTemplate": "Atue como {{persona}}.\nTema Base da Revisão: {{input_tema}}.\nTarefa: {{task}}.\nAs perguntas têm de adotar obrigatoriamente a estrutura PICO (se quantitativo) ou SPIDER (se qualitativo).\nRestrições:\n{{constraints}}\nDevolva a resposta em Markdown, desconstruindo explicitamente o framework utilizado (explicando onde está o P, o I, o C e o O em cada pergunta).",
+    "constraints": [
+      "As perguntas devem iniciar-se por 'Como', 'De que forma', 'Qual o impacto', ou 'Quais os fatores'.",
+      "Nunca crie perguntas genéricas ou binárias."
+    ],
+    "qualityCriteria": [
+      "A resposta da IA decompõe a sintaxe metodológica (PICO/SPIDER) tornando o processo transparente."
+    ],
+    "evaluationCriteria": [
+      "A decomposição PICO/SPIDER bate certo com as definições teóricas standard."
+    ],
+    "strategies": {
+      "guided": {
+        "description": "Foca-se na instrução e treino do investigador.",
+        "templateVariation": "Não devolva as perguntas prontas. Liste os elementos PICO ou SPIDER necessários e peça ao investigador que preencha os 'campos' de forma criativa."
+      },
+      "balanced": {
+        "description": "Abordagem base standard.",
+        "templateVariation": "Forneça 3 sugestões, garantindo a decomposição explícita do formato em cada uma delas."
+      },
+      "direct": {
+        "description": "Foco estrito no output.",
+        "templateVariation": "Liste apenas 4 perguntas de investigação para a RL. Nada mais."
+      }
+    }
+  }
+}

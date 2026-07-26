@@ -1,0 +1,49 @@
+{
+  "id": "KC-CORE-PICO",
+  "type": "knowledge",
+  "title": "A Estrutura PICO",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["pergunta-investigacao", "pico", "variaveis", "saude"],
+  "usedBy": ["RL-01", "PJ-01"],
+  "requires": [],
+  "relatedAssets": [],
+  "content": {
+    "summary": "Mnemónica padrão para formulação de perguntas de investigação clínicas e quantitativas.",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 3,
+    "concept": "A estrutura PICO é o *gold standard* para decompor problemas clínicos em perguntas pesquisáveis. Divide a pergunta em 4 polos: P (População/Paciente), I (Intervenção/Indicador), C (Comparador/Controlo) e O (Outcome/Desfecho).",
+    "whyItMatters": "Permite extrair instantaneamente os blocos lógicos necessários para construir a string de pesquisa booleana, eliminando ambiguidades e forçando a clareza sobre o que se quer medir e em quem.",
+    "whenToUse": "Sempre que a investigação pretender medir a eficácia de uma intervenção, comparar protocolos ou estudar fatores quantificáveis (especialmente na saúde e ciências da vida).",
+    "whenNotToUse": "Não utilizar em estudos estritamente qualitativos, fenomenológicos ou exploratórios de experiências subjetivas (onde ferramentas como SPIDER são mais indicadas).",
+    "steps": [
+      "Identifique o 'P': Quem é o doente ou grupo alvo exato?",
+      "Defina o 'I': Qual é a terapia, fator de risco ou teste aplicado?",
+      "Descreva o 'C': Qual é a alternativa de controlo (se existir)?",
+      "Especifique o 'O': O que se espera melhorar ou medir?"
+    ],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "Em adultos obesos com hipertensão (P), qual é o efeito de uma dieta baixa em hidratos (I), comparada com a dieta mediterrânica padrão (C), na redução da tensão arterial sistólica num período de 6 meses (O)?",
+        "explanation": "A pergunta mapeia milimetricamente as 4 letras, permitindo ir às bases de dados procurar exatamente por [Obesity AND Hypertension] AND [Low-Carb] AND [Mediterranean] AND [Blood Pressure]."
+      },
+      {
+        "type": "incorrect",
+        "text": "A dieta resulta na obesidade?",
+        "explanation": "Uma pergunta binária, vaga (qual dieta? quem é a população?) que anula a pesquisa estruturada."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "warning",
+        "message": "Forçar um 'Comparador' (C) quando o estudo é apenas observacional. Nesses casos, o formato adapta-se para PIO ou PEO."
+      }
+    ],
+    "references": []
+  }
+}

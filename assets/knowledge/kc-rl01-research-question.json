@@ -1,0 +1,48 @@
+{
+  "id": "KC-RL01-RESEARCH-QUESTION",
+  "type": "knowledge",
+  "title": "A Pergunta de Investigação na Revisão",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["rl01", "revisao-literatura", "pergunta-investigacao"],
+  "usedBy": ["RL-01"],
+  "requires": ["KC-CORE-PICO", "KC-CORE-SPIDER"],
+  "relatedAssets": [],
+  "content": {
+    "summary": "A âncora absoluta do protocolo de revisão; dita os termos de inclusão e exclusão.",
+    "difficulty": "advanced",
+    "estimatedReadingTime": 3,
+    "concept": "Numa revisão da literatura, a pergunta de investigação é a coluna vertebral do estudo. Como o seu 'trabalho de campo' será procurar artigos nas bases de dados, a pergunta dita rigorosamente as palavras-chave que pesquisará (Query) e quais os artigos que exclui. Se a pergunta for frágil, a revisão inteira carecerá de validade científica.",
+    "whyItMatters": "Se a pergunta não contiver explicitamente os eixos estruturais do tema, extrairá artigos desconexos. O velho lema informático GIGO (Garbage In, Garbage Out) aplica-se categoricamente nas revisões sistemáticas.",
+    "whenToUse": "Etapa 2 de todas as metodologias do RL-01. Imprescindível não avançar sem esta etapa limpa.",
+    "whenNotToUse": "",
+    "steps": [
+      "Comece a formulação sempre por 'Como', 'De que forma', 'Qual o impacto' ou 'Quais os fatores'.",
+      "Garanta que a População alvo e o Fenómeno/Outcome estão literalmente dentro da frase interrogativa.",
+      "Conclua sempre com um ponto de interrogação '?'."
+    ],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "De que forma as ferramentas baseadas em IA Generativa condicionam o desenvolvimento do pensamento crítico em estudantes do ensino superior?",
+        "explanation": "A pergunta exige análise, leitura teórica extensa e obriga à extração documental."
+      },
+      {
+        "type": "incorrect",
+        "text": "Os professores gostam de usar IA?",
+        "explanation": "É uma pergunta binária fechada, que seria passível de resolução enviando um inquérito na escola local. Não é matéria-prima para Revisão Literária profunda."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "error",
+        "message": "Fazer uma pergunta binária (Sim/Não). Se a resposta a dar no fim puder ser apenas um 'Sim', a revisão bibliográfica de 6 meses falhou o seu propósito heurístico."
+      }
+    ],
+    "references": []
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "REV-RL01-THEME",
+  "type": "review",
+  "title": "Avaliação Metodológica do Tema",
+  "version": "1.0",
+  "status": "approved",
+  "maturity": "reviewed",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["tema", "avaliação", "rl-01", "etapa-1"],
+  "usedBy": ["RL-01"],
+  "requires": [],
+  "relatedAssets": ["KC-CORE-THEME-DELIMITATION"],
+  "content": {
+    "assessmentType": "ai",
+    "validationPattern": "methodological",
+    "requiresLLM": true,
+    "automatic": false,
+    "learningOutcome": "O investigador consegue delimitar um tema exequível e preciso.",
+    "criteria": [
+      {
+        "severity": "fail",
+        "confidence": "high",
+        "criterion": "O tema apresenta apenas uma disciplina ou área vasta (ex: 'Educação', 'Inteligência Artificial') sem aplicação concreta.",
+        "feedback": "O seu tema é demasiado genérico e comportar-se-á como uma 'área de pesquisa' em vez de um projeto exequível. Num Mestrado/Doutoramento, isto torna impossível gerir a bibliografia.",
+        "recommendation": "Aplique imediatamente a técnica de afunilamento: defina a quem se aplica e onde se aplica.",
+        "remediation": {
+          "knowledge": ["KC-CORE-THEME-DELIMITATION"],
+          "prompt": ["PR-RL01-THEME-BRAINSTORMING"],
+          "example": [],
+          "tool": []
+        }
+      },
+      {
+        "severity": "warning",
+        "confidence": "medium",
+        "criterion": "O tema está delimitado geograficamente ou conceptualmente, mas a população-alvo é excessivamente ampla (ex: 'Alunos universitários em Portugal').",
+        "feedback": "Embora tenha uma restrição, a amostra sugerida continua a ser colossal. Tentar estudar 'todos os universitários' conduzirá a um estudo superficial.",
+        "recommendation": "Restrinja a população a um curso, ano letivo ou tipologia específica de estudante.",
+        "remediation": {
+          "knowledge": ["KC-RL01-THEME-SELECTION"],
+          "prompt": ["PR-CORE-BRAINSTORMING"],
+          "example": [],
+          "tool": []
+        }
+      },
+      {
+        "severity": "pass",
+        "confidence": "high",
+        "criterion": "O tema cruza de forma evidente um problema/fenómeno com uma população e um contexto delimitado.",
+        "feedback": "Excelente! O seu tema demonstra maturidade e foca-se num recorte metodologicamente exequível.",
+        "recommendation": "Pode avançar para a construção da pergunta de partida, pois já possui as variáveis-base.",
+        "remediation": {
+          "knowledge": [],
+          "prompt": [],
+          "example": [],
+          "tool": []
+        }
+      }
+    ]
+  }
+}

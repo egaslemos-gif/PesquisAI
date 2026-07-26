@@ -1,0 +1,39 @@
+{
+  "id": "KC-RL01-THEME-SELECTION",
+  "type": "knowledge",
+  "title": "A Falácia da Abrangência na Revisão da Literatura",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["rl01", "revisao-literatura", "tema"],
+  "usedBy": ["RL-01"],
+  "requires": ["KC-CORE-THEME-DELIMITATION"],
+  "relatedAssets": [],
+  "content": {
+    "summary": "Contextualização dos riscos de um tema mal delimitado especificamente num protocolo de Revisão da Literatura.",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 2,
+    "concept": "Numa Revisão da Literatura, o tema dita diretamente a exequibilidade da pesquisa de artigos. Escolher um tema latamente amplo (ex: 'Cancro da Mama') resulta num oceano de literatura devolvendo 100.000+ resultados nas bases de dados, o que impossibilita técnica e humanamente a síntese num único documento sem viés grave de seleção.",
+    "whyItMatters": "O afunilamento rigoroso na Fase 1 é o que garante que a futura string de pesquisa (Query) retornará um corpo de evidência maneável (ex: 30 a 100 artigos) que pode ser lido e extraído com qualidade metodológica.",
+    "whenToUse": "Para validar a escolha do tema no momento de arrancar com a Revisão.",
+    "whenNotToUse": "",
+    "steps": [],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "Selecionar o impacto cognitivo do burnout em enfermeiros de cuidados intensivos noturnos.",
+        "explanation": "A intersecção de condições (Cognição + Burnout + Enfermeiros UCI + Horário Noturno) garantirá que a literatura recuperada será cirúrgica e passível de síntese."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "error",
+        "message": "Recusar afunilar o tema pelo receio de 'deixar literatura importante de fora'. Numa revisão sistemática, o objetivo é precisamente deixar o ruído de fora para poder aprofundar o foco."
+      }
+    ],
+    "references": []
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "KC-CORE-SPIDER",
+  "type": "knowledge",
+  "title": "A Estrutura SPIDER",
+  "version": "1.0",
+  "status": "approved",
+  "language": "pt-PT",
+  "author": "Guia do Investigador",
+  "reviewedBy": "Scientific Board",
+  "lastUpdated": "2026-07-26",
+  "tags": ["pergunta-investigacao", "spider", "qualitativo", "sociais"],
+  "usedBy": ["RL-01", "PJ-01"],
+  "requires": [],
+  "relatedAssets": [],
+  "content": {
+    "summary": "Mnemónica padrão para perguntas de investigação de base metodológica mista ou qualitativa.",
+    "difficulty": "advanced",
+    "estimatedReadingTime": 4,
+    "concept": "A estrutura SPIDER foi concebida como alternativa ao PICO para sintetizar dados qualitativos e métodos mistos. Desdobra a pergunta em S (Sample / Amostra), PI (Phenomenon of Interest / Fenómeno de Interesse), D (Design do Estudo), E (Evaluation / Avaliação) e R (Research type / Tipo de Investigação).",
+    "whyItMatters": "Nas ciências sociais, nem sempre existe uma 'Intervenção' e muito raramente um 'Comparador'. O fenómeno muitas vezes assenta na observação de comportamentos, opiniões ou perceções, o que exige um quadro que acomode o design observacional.",
+    "whenToUse": "Estudos focados em comportamentos, opiniões, sentimentos, atitudes e experiências. Ideal para investigação baseada em entrevistas, *focus groups* ou inquéritos narrativos.",
+    "whenNotToUse": "Investigações experimentais focadas na quantificação estatística de um ensaio clínico (usar PICO).",
+    "steps": [
+      "Defina o S: Qual o grupo exato que constitui a amostra?",
+      "Defina o PI: Qual é o comportamento, experiência ou fenómeno em estudo?",
+      "Defina o D: Trata-se de um inquérito, entrevista, caso de estudo ou foco de grupo?",
+      "Defina o E: O que será avaliado nas atitudes/perspetivas?",
+      "Defina o R: Tipo de estudo primário (Qualitativo, Misto)."
+    ],
+    "examples": [
+      {
+        "type": "correct",
+        "text": "Quais as perceções (PI/E) dos jovens estudantes universitários (S) sobre os métodos de ensino à distância, baseados numa análise qualitativa (R) de estudos de caso e entrevistas (D)?",
+        "explanation": "Permite delimitar a pesquisa para encontrar apenas literatura onde o fenómeno é o 'ensino à distância', avaliado através da perspetiva/experiência qualitativa de estudantes."
+      }
+    ],
+    "commonErrors": [
+      {
+        "severity": "error",
+        "message": "Usar SPIDER apenas para evitar quantificação estatística, ignorando os pilares de Design (D) e Tipo de Investigação (R) aquando da procura de literatura."
+      }
+    ],
+    "references": [
+      {
+        "title": "Cooke, A., Smith, D., & Booth, A. (2012). Beyond PICO: The SPIDER tool for qualitative evidence synthesis.",
+        "url": ""
+      }
+    ]
+  }
+}
