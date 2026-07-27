@@ -38,20 +38,20 @@ Object.assign(window.KNOWLEDGE, {
     },
     "KN-STEP-INV-07": {
         "id": "KN-STEP-INV-07",
-        "learningOutcome": "Aplicar os critérios de seleção de forma sistemática à leitura de resumos (abstracts) para descartar o ruído rapidamente.",
-        "bestPractices": "Na dúvida ('Talvez'), inclua o artigo para leitura integral. É preferível ler o texto completo do que perder um artigo chave por um resumo mal redigido.",
-        "commonErrors": "Tentar ler o artigo completo nesta fase em vez de tomar decisões rápidas baseadas apenas no título e resumo."
+        "learningOutcome": "Desenvolver tolerância à incerteza metodológica na triagem, não rejeitando artigos centrais por omissão do abstract.",
+        "bestPractices": "Na presença de 'incerteza metodológica' (ex: o abstract não detalha a amostra), a decisão correta e rigorosa é SEMPRE incluir para leitura integral. A triagem foca-se em remover artigos que violam claramente os critérios, não em aprovar os perfeitos.",
+        "commonErrors": "Usar a triagem de abstract como filtro final definitivo, excluindo estudos relevantes porque o resumo foi mal redigido pelos autores."
     },
     "KN-STEP-INV-08": {
         "id": "KN-STEP-INV-08",
-        "learningOutcome": "Extrair sistematicamente metodologias, resultados e limitações dos artigos incluídos, alimentando uma matriz de síntese.",
-        "bestPractices": "Não leia de forma passiva. Leia à procura de dados específicos para preencher a sua matriz. Foco na secção de Resultados e Discussão.",
-        "commonErrors": "Ler o artigo inteiro do início ao fim sem tirar notas estruturadas, perdendo horas preciosas."
+        "learningOutcome": "Extrair de cada artigo apenas a Força da Evidência, as Limitações e a Relevância para a PRÓPRIA tese, distinguindo evidência de opinião.",
+        "bestPractices": "Para cada artigo, responda sempre: 'Porque é que este artigo importa para a minha investigação?' Avalie criticamente a robustez da evidência e a transferibilidade dos resultados para o seu contexto específico.",
+        "commonErrors": "Resumir passivamente o artigo todo (focar no 'o que diz o artigo') em vez de focar na força da evidência que pode fundamentar a sua pesquisa."
     },
     "KN-STEP-INV-09": {
         "id": "KN-STEP-INV-09",
-        "learningOutcome": "Redigir uma síntese crítica que não apenas resume, mas cruza autores (concordâncias, discordâncias) e justifica a necessidade do seu próprio estudo (a lacuna).",
-        "bestPractices": "Uma lacuna reconhece-se quando múltiplos estudos sugerem algo como 'trabalhos futuros', ou quando aplicam teorias a um contexto (ex: Europa) mas não ao seu (ex: Moçambique).",
-        "commonErrors": "Fazer uma 'lista de lavandaria' (O autor A diz X. O autor B diz Y. O autor C diz Z) sem os relacionar."
+        "learningOutcome": "Construir uma Síntese Crítica, organizando o 'Jantar de Investigadores' através de Convergências, Divergências, Lacunas e Tensões.",
+        "bestPractices": "Classifique o nível geral da evidência (Consistente, Contraditória, Insuficiente). Identifique 'Tensões' onde estudos divergem devido a pressupostos ou amostras diferentes. Conclua justificando como o seu estudo preenche a lacuna exposta.",
+        "commonErrors": "Escrever um 'resumo sequencial' (A diz X, B diz Y) em vez de uma 'síntese crítica' relacional (Embora A e B concordem em X, a tensão teórica reside em...)."
     }
 });

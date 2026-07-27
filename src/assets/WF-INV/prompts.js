@@ -55,9 +55,9 @@ Object.assign(window.PROMPTS, {
         "competency": "Critérios de Inclusão/Exclusão"
     },
     "PT-R-007": {
-        "template": "És um assistente de investigação rigoroso.\nO meu tema é: '{{TEMA}}' e a minha pergunta é: '{{PERGUNTA}}'.\nOs meus critérios de inclusão/exclusão são:\n'{{CRITERIOS}}'\n\nAqui está o resumo (abstract) de um artigo:\n'[COLE AQUI O RESUMO]'\n\nPor favor, apresenta a resposta estritamente com a seguinte estrutura:\n\n1. Decisão (Incluir, Excluir ou Talvez)\n2. Justificação (Cruzamento direto entre o resumo e os critérios definidos)\n3. Alertas de Qualidade (Há sinais metodológicos fracos visíveis no resumo?)\n4. Próximo Passo (Ler na íntegra ou descartar definitivamente)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Decidir rapidamente se vale a pena ler o artigo completo.",
-        "expectedResult": "Decisão estruturada e justificada face aos critérios.",
+        "template": "És um orientador científico e especialista em metodologia. A IA não produz automaticamente; a IA faz o investigador pensar. O teu papel é debater os dados.\nO meu tema é: '{{TEMA}}' e a minha pergunta é: '{{PERGUNTA}}'.\nOs meus critérios são:\n'{{CRITERIOS}}'\n\nAqui está o resumo (abstract) de um artigo:\n'[COLE AQUI O RESUMO]'\n\n1. Ouvir: Lê o abstract e os meus critérios.\n2. Analisar: Não tomes a decisão por mim. Faz um mapeamento: 'O abstract menciona claramente [Critério X], mas é omisso em relação a [Critério Y].'\n3. Desafiar: Pergunta-me: 'Se excluíres este artigo apenas por omissão no abstract, corres o risco de perder um estudo central. Como geres esta incerteza metodológica?'\n4. Sugerir: Lembra-me que, em caso de dúvida ou 'silêncio' do abstract, a decisão metodologicamente mais rigorosa é INCLUIR para leitura integral. Não se rejeita sem evidência.\n5. Confirmar: Pergunta-me: 'Qual é a tua decisão final (Incluir, Excluir ou Ler na íntegra)?' e 'Qual foi o principal motivo da tua decisão (ex: população incompatível, dados insuficientes)?'\n6. Esperar e Refletir: Não avances para a etapa seguinte. Espera pela minha resposta e reflexão.",
+        "objective": "Treinar a leitura crítica de abstracts perante incerteza metodológica.",
+        "expectedResult": "Decisão de triagem refletida e justificada pelo investigador.",
         "example": "Decisão: Excluir. Justificação: A amostra foca-se no ensino básico (critério de exclusão).",
         "estimatedTime": "2-5 minutos",
         "effort": "low",
@@ -73,19 +73,19 @@ Object.assign(window.PROMPTS, {
         "competency": "Refinamento de Pesquisa"
     },
     "PT-R-009": {
-        "template": "És um assistente de extração de dados científicos.\nO meu tema é: '{{TEMA}}'.\nTenho o seguinte artigo completo (ou excertos relevantes):\n'[COLE AQUI O TEXTO]'\n\nPreciso de extrair dados para a minha matriz de síntese.\n\nPor favor, apresenta a resposta estritamente com a seguinte estrutura:\n\n1. Metodologia (Qual o desenho do estudo, amostra e instrumentos?)\n2. Resultados Principais (Que dados respondem diretamente ao meu tema?)\n3. Lacunas e Limitações (O que os próprios autores assumem que falhou ou falta investigar?)\n4. Citação Chave (Sugere 1 a 2 frases literais do autor que sejam brilhantes para citar)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Sistematizar a extração de dados cruciais do artigo lido.",
-        "expectedResult": "Extração estruturada de Metodologia, Resultados e Limitações.",
-        "example": "Metodologia: Estudo quantitativo, N=150 estudantes.",
+        "template": "És um orientador científico e especialista em metodologia. A IA não produz automaticamente; a IA faz o investigador pensar. O teu papel é debater os dados.\nA minha pergunta de investigação é: '{{PERGUNTA}}'.\nTenho o seguinte artigo completo (ou notas de leitura):\n'[COLE AQUI O TEXTO]'\n\n1. Ouvir: Lê o texto submetido.\n2. Analisar: Foca-te apenas no que responde à minha pergunta. Ignora o ruído acessório do artigo.\n3. Desafiar: Pergunta-me: 'A conclusão que estás a retirar é suportada pelos dados apresentados no artigo ou é uma interpretação tua?' e 'Se tivesses de eliminar este artigo da tua revisão, que conhecimento perderias?'\n4. Sugerir: Ajuda-me a extrair exatamente 5 elementos fundamentais: 1) Contributo principal; 2) Evidência que suporta esse contributo (Força da evidência); 3) Limitações do estudo; 4) Qualidade metodológica; 5) Relevância (Transferibilidade - Os resultados podem ser aplicados ao contexto da minha investigação?).\n5. Confirmar: Pergunta-me como eu categorizaria este artigo numa única frase para a minha grelha de extração.\n6. Esperar e Refletir: Espera pela minha resposta e reflexão.",
+        "objective": "Garantir extração de dados baseada em evidência e avaliar a sua transferibilidade.",
+        "expectedResult": "Fichamento estruturado em 5 pontos críticos focados na pergunta.",
+        "example": "Contributo principal: X. Relevância: Aplica-se ao meu contexto (Moçambique) porque...",
         "estimatedTime": "5-10 minutos por artigo",
         "effort": "medium",
         "competency": "Extração de Dados"
     },
     "PT-R-010": {
-        "template": "És um especialista em redação académica.\nA minha pergunta é: '{{PERGUNTA}}'.\n\nAqui está a minha matriz de extração/notas dos artigos lidos:\n'[COLE AQUI A MATRIZ]'\n\nPreciso de ajuda para estruturar a minha Revisão da Literatura. NÃO quero um mero resumo autor por autor. Quero uma síntese crítica relacional.\n\nPor favor, apresenta a resposta estritamente com a seguinte estrutura:\n\n1. Eixos Temáticos (Identifica 2 a 3 grandes temas onde os autores convergem ou divergem)\n2. Síntese Crítica (Para cada eixo, redige 1 parágrafo estruturado cruzando os autores, ex: 'Enquanto A defende X, B demonstra Y')\n3. Identificação de Lacunas (Ensina-me a ver a lacuna: O que é que TODOS estes artigos falharam em investigar? O que testaram em adultos mas não em jovens?)\n4. Sugestão de Fecho (Como a minha investigação vai preencher exatamente essa lacuna)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Sintetizar a literatura de forma crítica e relacional.",
-        "expectedResult": "Texto estruturado que cruza autores e expõe lacunas.",
-        "example": "Eixos Temáticos: 1. Adoção tecnológica; 2. Implicações éticas...",
+        "template": "És um orientador científico e especialista em redação académica. A IA não produz automaticamente; a IA faz o investigador pensar. O teu papel é organizar o 'jantar de investigadores'.\nA minha pergunta é: '{{PERGUNTA}}'.\nAqui está a minha matriz de extração/fichamento:\n'[COLE AQUI A MATRIZ]'\n\n1. Ouvir: Analisa a matriz de extração submetida.\n2. Analisar: Procura padrões transversais. Identifica Convergências, Divergências, Lacunas e Tensões (estudos que usam pressupostos incompatíveis) entre os artigos.\n3. Desafiar: Pergunta-me: 'Se tivesses de retirar um único estudo desta síntese, a tua conclusão mudaria?' Ajuda-me a avaliar o Nível de Evidência geral: é Muito Consistente, Consistente, Contraditória ou Insuficiente?\n4. Sugerir: Avisa-me explicitamente: 'Evita escrever \"Autor A diz...\" seguido de \"Autor B diz...\". Procura explicar como os estudos dialogam entre si.' Sugere uma estrutura narrativa temática baseada nas tensões identificadas.\n5. Confirmar: Pede-me para escolher e fundamentar o eixo narrativo que melhor servirá para ancorar o meu próprio estudo empírico.\n6. Esperar e Refletir: Espera pela minha aprovação antes de avançarmos para a redação formal da síntese.",
+        "objective": "Construir uma Síntese Crítica relacional baseada em tensões e lacunas, e não um mero resumo.",
+        "expectedResult": "Estrutura temática cruzada e avaliação da força geral da evidência.",
+        "example": "Tensões: Enquanto A (2020) e C (2021) convergem em X, B (2023) introduz uma tensão ao usar...",
         "estimatedTime": "15-30 minutos",
         "effort": "high",
         "competency": "Comunicação Científica"

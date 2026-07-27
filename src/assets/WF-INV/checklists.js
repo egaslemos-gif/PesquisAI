@@ -33,16 +33,17 @@ Object.assign(window.CHECKLISTS, {
         { "id": "chk-06-03", "label": "Registei a data da pesquisa e o número total de resultados nas respetivas bases?" }
     ],
     "CHK-STEP-INV-07": [
-        { "id": "chk-07-01", "label": "A decisão de inclusão/exclusão baseou-se estritamente nos critérios definidos na etapa 5?" },
-        { "id": "chk-07-02", "label": "Registou os motivos de exclusão (fundamental para relatar o processo)?" }
+        { "id": "chk-07-01", "label": "Perante incerteza metodológica ou omissão no abstract, optei por INCLUIR o artigo para leitura integral?" },
+        { "id": "chk-07-02", "label": "Registei o principal motivo da decisão (ex: população incompatível, dados insuficientes) para o diagrama PRISMA?" }
     ],
     "CHK-STEP-INV-08": [
-        { "id": "chk-08-01", "label": "Extraiu a amostra, metodologia e resultados principais de forma esquemática?" },
-        { "id": "chk-08-02", "label": "Identificou as limitações apontadas pelos próprios autores do artigo lido?" }
+        { "id": "chk-08-01", "label": "Extraí os 5 elementos essenciais (Contributo, Evidência, Limitações, Qualidade, Transferibilidade) em vez de fazer um resumo passivo?" },
+        { "id": "chk-08-02", "label": "Verifiquei rigorosamente a Força da Evidência vs Opinião do autor?" },
+        { "id": "chk-08-03", "label": "Avaliei se perderia conhecimento essencial caso eliminasse este estudo da revisão?" }
     ],
     "CHK-STEP-INV-09": [
-        { "id": "chk-09-01", "label": "O texto cruza vários autores no mesmo parágrafo para debater uma ideia?" },
-        { "id": "chk-09-02", "label": "Identificou explicitamente o que a literatura NÃO resolveu (a lacuna)?" },
-        { "id": "chk-09-03", "label": "A revisão conclui justificando a pertinência da sua própria Pergunta de Investigação?" }
+        { "id": "chk-09-01", "label": "A minha síntese explora convergências, divergências, lacunas e tensões (e não é uma mera lista 'Autor A disse... Autor B disse...')?" },
+        { "id": "chk-09-02", "label": "Identifiquei claramente o nível de evidência global (Consistente, Contraditória, Insuficiente) do tema?" },
+        { "id": "chk-09-03", "label": "A revisão conclui justificando exatamente como o meu estudo preenche a lacuna que os autores anteriores falharam em investigar?" }
     ]
 });
