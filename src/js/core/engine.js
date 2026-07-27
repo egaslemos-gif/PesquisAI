@@ -38,6 +38,15 @@ class Engine {
 
     evaluate(payload) {
         const data = this.workspace.getData();
+        const wfId = data.workflowId && data.workflowId !== 'default' ? data.workflowId : 'WF-INV';
+        
+        // Sincronizar dinamicamente o protocolo atual sempre que houver avaliação de estado
+        if (window.WORKFLOWS && window.WORKFLOWS[wfId]) {
+            this.workflowDefinition = window.WORKFLOWS[wfId];
+        } else if (window.WORKFLOWS && window.WORKFLOWS['WF-INV']) {
+            this.workflowDefinition = window.WORKFLOWS['WF-INV'];
+        }
+
         if (window.rgEventBus) {
             // Em vez de redirecionar automaticamente para MAIN no INIT,
             // abrimos no MAIN se houver um projeto ativo (refresh), caso contrário mostramos o Dashboard (EMPTY view).
