@@ -80,7 +80,7 @@ class ProgressView {
             
             // Usamos o nome completo se for curto, senão partimos
             let shortName = step.name;
-            if (shortName.length > 12) {
+            if (shortName.length > 15) {
                 const words = step.name.split(' ');
                 shortName = words[0];
                 if (shortName.length < 5 && words.length > 1) {
@@ -88,12 +88,28 @@ class ProgressView {
                 }
             }
 
+            const circleStyles = stateClass === 'active' 
+                ? 'background: var(--color-primary-600); color: white; border: 2px solid var(--color-primary-600);' 
+                : stateClass === 'completed' 
+                    ? 'background: #e0f6f4; color: #1bb0a1; border: 2px solid #1bb0a1;' 
+                    : 'background: white; color: var(--color-gray-400); border: 2px solid var(--color-gray-300);';
+                    
+            const connectorColor = status === 'COMPLETED' ? '#1bb0a1' : 'var(--color-gray-200)';
+
             stepsHtml += `
                 <div class="semantic-step-item ${stateClass}" 
                      title="${step.name}"
-                     ${isClickable ? `onclick="window.rgEngine.goToStep('${step.id}')" style="cursor:pointer; flex: 1; min-width: 120px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0.5rem; border-radius: var(--radius-md); transition: background 0.2s;"` : `style="flex: 1; min-width: 120px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0.5rem; opacity: 0.6;"`}>
-                    <div class="semantic-step-status" style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; ${stateClass === 'active' ? 'background: var(--color-primary-600); color: white;' : stateClass === 'completed' ? 'background: var(--color-success-light); color: var(--color-success);' : 'background: var(--color-gray-100); color: var(--color-gray-500);'}">${statusSymbol}</div>
-                    <div class="semantic-step-name" style="font-size: 0.8rem; font-weight: ${stateClass === 'active' ? '700' : '500'}; color: ${stateClass === 'active' ? 'var(--color-primary-700)' : 'var(--color-gray-700)'}; margin-bottom: 0.25rem;">${shortName}</div>
+                     ${isClickable ? `onclick="window.rgEngine.goToStep('${step.id}')" style="cursor:pointer; flex: 1; min-width: 90px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 0.5rem 0; transition: opacity 0.2s;"` : `style="flex: 1; min-width: 90px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; padding: 0.5rem 0; opacity: 0.6;"`}>
+                    
+                    ${index < steps.length - 1 ? `<div class="step-connector" style="position: absolute; top: 23px; left: 50%; width: 100%; height: 2px; background: ${connectorColor}; z-index: 0;"></div>` : ''}
+
+                    <div class="semantic-step-status" style="position: relative; z-index: 1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; ${circleStyles}">
+                        ${statusSymbol}
+                    </div>
+                    <div class="semantic-step-name" style="font-size: 0.8rem; font-weight: ${stateClass === 'active' ? '700' : '500'}; color: ${stateClass === 'active' ? 'var(--color-primary-700)' : 'var(--color-gray-700)'}; margin-bottom: 0.25rem;">
+                        ${shortName}
+                    </div>
+                    ${assetsIcons}
                 </div>
             `;
         });
@@ -101,7 +117,7 @@ class ProgressView {
         // O ProtocolOverview já mostra o progresso percentual e resultado esperado,
         // pelo que esta secção fica dedicada apenas à timeline semântica.
         container.innerHTML = `
-            <div class="semantic-timeline-container" style="display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 1rem; width: 100%; border-bottom: 1px solid var(--color-gray-200); margin-bottom: 2rem;">
+            <div class="semantic-timeline-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 1rem; width: 100%; border-bottom: 1px solid var(--color-gray-200); margin-bottom: 2rem;">
                 ${stepsHtml}
             </div>
         `;
