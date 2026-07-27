@@ -118,8 +118,9 @@ class AppShell {
                 `;
 
                 let rid = 'Desconhecido';
-                if (window.rgResearchIdentity) {
-                    rid = window.rgResearchIdentity.getIdentity().id || rid;
+                if (window.rgResearchIdentity && typeof window.rgResearchIdentity.getData === 'function') {
+                    const data = window.rgResearchIdentity.getData();
+                    rid = data?.profile?.id || 'RID-' + Math.random().toString(36).substr(2, 6).toUpperCase();
                 }
 
                 const html = `
@@ -188,6 +189,7 @@ class AppShell {
                 }
             };
             document.addEventListener('click', closeMenu);
+            });
         });
 
         if (fileInput) {
