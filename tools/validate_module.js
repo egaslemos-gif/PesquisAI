@@ -57,6 +57,15 @@ class ModuleValidator {
             this._log('INFO', 'schemaVersion válido');
         }
 
+        // 1.5 Validação do assetVersion
+        if (!manifest.assetVersion) {
+            this._log('WARNING', 'assetVersion em falta (usará versão global ou de módulo como fallback)');
+        } else if (manifest.version !== manifest.assetVersion) {
+            this._log('WARNING', `Module version (${manifest.version}) differs from asset version (${manifest.assetVersion})`);
+        } else {
+            this._log('INFO', 'version e assetVersion estão consistentes');
+        }
+
         // 2. Outros campos obrigatórios
         const req = ['id', 'title', 'version', 'role', 'status', 'minCoreVersion', 'workflow', 'assets'];
         req.forEach(f => {

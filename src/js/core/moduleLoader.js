@@ -57,7 +57,8 @@ class ModuleLoader {
         try {
             this._log('INFO', moduleId, 'A iniciar carregamento...');
             
-            const response = await fetch(`./src/assets/${moduleId}/module.json?v=${Date.now()}`);
+            const globalV = window.APP_VERSION || 'dev';
+            const response = await fetch(`./src/assets/${moduleId}/module.json?v=${globalV}`);
             if (!response.ok) {
                 this._log('ERROR', moduleId, `module.json não encontrado ou inacessível (HTTP ${response.status})`);
                 return false;
@@ -77,14 +78,19 @@ class ModuleLoader {
                 return false;
             }
 
+            const assetV = manifest.assetVersion || manifest.version || globalV;
+
+            // Save the resolved version for reporting
+            manifest._resolvedAssetVersion = assetV;
+
             this.modules.set(moduleId, manifest);
 
             // Carregar Scripts do Workflow
             if (manifest.workflow) {
-                const metaSuccess = await this._loadScript(`./src/assets/${moduleId}/${manifest.workflow}metadata.js`);
+                const metaSuccess = await this._loadScript(`./src/assets/${moduleId}/${manifest.workflow}metadata.js`, assetV);
                 if (!metaSuccess) this._log('WARNING', moduleId, 'metadata.js não encontrado (pode causar falhas visuais)');
 
-                const stepsSuccess = await this._loadScript(`./src/assets/${moduleId}/${manifest.workflow}steps.js`);
+                const stepsSuccess = await this._loadScript(`./src/assets/${moduleId}/${manifest.workflow}steps.js`, assetV);
                 if (!stepsSuccess) {
                     this._log('ERROR', moduleId, 'steps.js não encontrado. O módulo é inútil sem passos.');
                     return false;
@@ -103,7 +109,7 @@ class ModuleLoader {
 
             // Carregar Assets
             for (const asset of manifest.assets) {
-                const assetSuccess = await this._loadScript(`./src/assets/${moduleId}/${asset}.js`);
+                const assetSuccess = await this._loadScript(`./src/assets/${moduleId}/${asset}.js`, assetV);
                 if (!assetSuccess) {
                     if (asset === 'examples') {
                         this._log('INFO', moduleId, `Asset opcional ausente: ${asset}.js`);
@@ -122,10 +128,11 @@ class ModuleLoader {
         }
     }
 
-    _loadScript(src) {
+    _loadScript(src, vHash = null) {
         return new Promise((resolve) => {
             const script = document.createElement('script');
-            script.src = src;
+            const separator = src.includes('?') ? '&' : '?';
+            script.src = vHash ? `${src}${separator}v=${vHash}` : src;
             script.onload = () => resolve(true);
             script.onerror = () => {
                 resolve(false); 
@@ -138,7 +145,17 @@ class ModuleLoader {
      * Imprime o relatório final
      */
     _printReport() {
-        console.groupCollapsed('%c[ModuleLoader] %cRelatório de Inicialização', 'color: #3b82f6; font-weight: bold;', 'color: inherit;');
+        const coreVersion = window.APP_VERSION || 'dev';
+        console.groupCollapsed('%c[ModuleLoader] %cResearchAI Hub', 'color: #3b82f6; font-weight: bold;', 'color: inherit;');
+        console.log(`Core %c${coreVersion}`, 'color: #10b981; font-weight: bold;');
+        console.log('──────────────');
+        
+        for (const [moduleId, manifest] of this.modules.entries()) {
+            console.log(`%c${moduleId} %c${manifest.version || '?'}`, 'font-weight: bold;', 'color: #6b7280;');
+            console.log(`Assets %c${manifest._resolvedAssetVersion || '?'} %c✓`, 'color: #6b7280;', 'color: #10b981;');
+            console.log('──────────────');
+        }
+
         console.log(`Total de Módulos: ${this.report.total}`);
         console.log(`%c✓ Sucesso: ${this.report.success}`, 'color: #10b981;');
         if (this.report.warnings > 0) console.log(`%c⚠ Avisos: ${this.report.warnings}`, 'color: #f59e0b;');
