@@ -39,10 +39,12 @@ class ProtocolOverview {
             let area = data.area || '';
             let tema = window.rgWorkspace.getArtifactByVariable('TEMA') || data.title || '';
             
-            // No truncation applied to theme, let it wrap
-
             if (area || tema) {
-                themeData = true;
+                themeData = `
+                <div class="theme-data-container" style="display: flex; align-items: center; gap: 2rem; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; flex-grow: 1; min-width: 0;">
+                    ${area ? `<div style="flex-shrink: 0;"><div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área:</div><div style="font-size: 0.85rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" title="${area}">${area}</div></div>` : ''}
+                    ${tema ? `<div style="flex-grow: 1; min-width: 0;"><div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Projeto:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div></div>` : ''}
+                </div>`;
             }
         }
 
@@ -59,11 +61,7 @@ class ProtocolOverview {
                             <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--color-gray-900); margin: 0; white-space: nowrap;">${protocolData.title || protocolData.name}</h2>
                         </div>
                     </div>
-                    ${themeData ? `
-                    <div class="theme-data-container" style="display: flex; align-items: center; gap: 2rem; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; flex-grow: 1; min-width: 0;">
-                        ${area ? `<div style="flex-shrink: 0;"><div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área:</div><div style="font-size: 0.85rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" title="${area}">${area}</div></div>` : ''}
-                        ${tema ? `<div style="flex-grow: 1; min-width: 0;"><div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Projeto:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div></div>` : ''}
-                    </div>` : ''}
+                    ${themeData}
                 </div>
                 <hr style="border: 0; border-top: 1px solid var(--color-gray-200); margin: 0.25rem 0;" />
                 <div style="display: flex; flex-wrap: nowrap; align-items: center; gap: 1rem; font-size: 0.8rem; color: var(--color-gray-600);">
