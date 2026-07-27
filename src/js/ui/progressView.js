@@ -76,7 +76,7 @@ class ProgressView {
                 assetsIcons = `<div class="semantic-step-assets" style="display: flex; gap: 4px; align-items: center; justify-content: center; margin-top: 4px;">${assetsIcons}</div>`;
             }
 
-            const isClickable = index <= currentIndex || status === 'COMPLETED';
+            const isClickable = true;
             
             // Usamos o nome completo se for curto, senão partimos
             let shortName = step.name;
