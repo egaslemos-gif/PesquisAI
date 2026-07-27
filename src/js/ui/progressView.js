@@ -106,10 +106,9 @@ class ProgressView {
                     <div class="semantic-step-status" style="position: relative; z-index: 1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; ${circleStyles}">
                         ${statusSymbol}
                     </div>
-                    <div class="semantic-step-name" style="font-size: 0.8rem; font-weight: ${stateClass === 'active' ? '700' : '500'}; color: ${stateClass === 'active' ? 'var(--color-primary-700)' : 'var(--color-gray-700)'}; margin-bottom: 0.25rem;">
+                    <div class="semantic-step-name" style="font-size: 0.8rem; font-weight: ${stateClass === 'active' ? '700' : '500'}; color: ${stateClass === 'active' ? 'var(--color-primary-700)' : 'var(--color-gray-700)'}; margin-bottom: 0;">
                         ${shortName}
                     </div>
-                    ${assetsIcons}
                 </div>
             `;
         });
@@ -117,7 +116,7 @@ class ProgressView {
         // O ProtocolOverview já mostra o progresso percentual e resultado esperado,
         // pelo que esta secção fica dedicada apenas à timeline semântica com o estilo de cartão branco do mockup.
         container.innerHTML = `
-            <div class="semantic-timeline-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 24px 16px; background: white; border: 1px solid var(--color-gray-200); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); width: 100%; margin-bottom: 2rem;">
+            <div class="semantic-timeline-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 12px 16px; background: white; border: 1px solid var(--color-gray-200); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); width: 100%; margin-bottom: 1.5rem;">
                 ${stepsHtml}
             </div>
         `;
