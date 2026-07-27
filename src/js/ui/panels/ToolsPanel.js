@@ -45,22 +45,55 @@ class ToolsPanel {
                     <span style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; color: var(--color-primary-600);">${this.icon}</span> 
                     Ferramentas
                 </h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem;">
         `;
         tools.forEach(tool => {
             let finalUrl = tool.url;
             
             // Auto-preencher o prompt nos URLs que suportam o parâmetro "q"
-            if (generatedPromptText && (tool.id === 'tool-chatgpt' || tool.id === 'tool-gemini' || tool.id === 'tool-claude')) {
-                // ChatGPT suporta nativamente "?q=". Gemini e Claude podem requerer extensões, mas passamos na mesma para máxima compatibilidade.
+            if (generatedPromptText && tool.type.includes('LLM')) {
                 finalUrl += `?q=${encodeURIComponent(generatedPromptText)}`;
             }
 
             html += `
-                <div style="border: 1px solid var(--color-gray-200); border-radius: var(--radius-md); padding: 1rem;">
-                    <div style="font-weight: 600; color: var(--color-gray-900);">${tool.name}</div>
-                    <div style="font-size: 0.8rem; color: var(--color-gray-500); margin-bottom: 0.5rem;">${tool.type}</div>
-                    <button class="btn-open-tool" data-url="${finalUrl}" data-raw-url="${tool.url}" style="font-size: 0.85rem; color: var(--color-primary-600); background: none; border: none; padding: 0; cursor: pointer; text-decoration: none; font-weight: 500;">Abrir ferramenta ↗</button>
+                <div style="border: 1px solid var(--color-gray-200); border-radius: var(--radius-md); padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; background: var(--color-white); box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div style="font-weight: 700; color: var(--color-gray-900); font-size: 1.1rem;">${tool.name}</div>
+                            <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-gray-500); margin-top: 0.1rem;">${tool.type}</div>
+                        </div>
+                        <button class="btn-open-tool" data-url="${finalUrl}" data-raw-url="${tool.url}" style="font-size: 0.8rem; color: var(--color-white); background: var(--color-primary-600); border: none; padding: 0.4rem 0.75rem; border-radius: 4px; cursor: pointer; font-weight: 600; white-space: nowrap; transition: background 0.2s;">Abrir ↗</button>
+                    </div>
+                    
+                    <div style="font-size: 0.9rem; color: var(--color-gray-700); line-height: 1.4; border-left: 3px solid var(--color-primary-300); padding-left: 0.75rem;">
+                        <strong>O que faz:</strong> ${tool.description}
+                    </div>
+                    
+                    <details style="font-size: 0.85rem;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--color-primary-600); margin-top: 0.25rem; outline: none; user-select: none;">Ver detalhes e recomendações</summary>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem;">
+                            ${tool.whenToUse ? `
+                            <div style="background: var(--color-gray-50); padding: 0.75rem; border-radius: var(--radius-sm);">
+                                <strong style="color: var(--color-gray-800); display: block; margin-bottom: 0.25rem;">Quando usar:</strong>
+                                <span style="color: var(--color-gray-600);">${tool.whenToUse}</span>
+                            </div>` : ''}
+                            
+                            ${tool.idealFor ? `
+                            <div style="background: #f0fdf4; padding: 0.75rem; border-radius: var(--radius-sm);">
+                                <strong style="color: #166534; display: block; margin-bottom: 0.25rem;">Boas práticas (Ideal para):</strong>
+                                <div style="color: #15803d; line-height: 1.5;">
+                                    ${tool.idealFor.map(item => `<div>${item}</div>`).join('')}
+                                </div>
+                            </div>` : ''}
+                            
+                            ${tool.limitations ? `
+                            <div style="background: #fff4f2; padding: 0.75rem; border-radius: var(--radius-sm);">
+                                <strong style="color: #b91c1c; display: block; margin-bottom: 0.25rem;">Limitações & Cuidados:</strong>
+                                <div style="color: #991b1b; margin-bottom: 0.25rem;">${tool.limitations}</div>
+                                ${tool.whenNotToUse ? `<div style="color: #991b1b;"><strong>Evitar:</strong> ${tool.whenNotToUse}</div>` : ''}
+                            </div>` : ''}
+                        </div>
+                    </details>
                 </div>
             `;
         });
@@ -97,10 +130,7 @@ class ToolsPanel {
                 
                 if (generatedPromptText && window.rgClipboard) {
                     window.rgClipboard.copyText(generatedPromptText);
-                    // Use the original url (without ?q=) for Gemini/Claude so it doesn't break, ChatGPT works with ?q=
-                    const isChatGPT = url.includes('chatgpt.com');
-                    const targetUrl = isChatGPT ? url : rawUrl;
-                    window.open(targetUrl, '_blank');
+                    window.open(url, '_blank');
                 } else {
                     window.open(url, '_blank');
                 }

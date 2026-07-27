@@ -60,6 +60,13 @@ class AppShell {
         if (logoBtn) {
             logoBtn.addEventListener('click', handleGoHome);
         }
+
+        if (window.rgEventBus) {
+            window.rgEventBus.on('navigation:home', handleGoHome);
+            window.rgEventBus.on('navigation:new-project', () => {
+                this._showWizardModal();
+            });
+        }
     }
 
     render(view) {
@@ -163,8 +170,8 @@ class AppShell {
 
         // Mapear prompts aos seus protocolos/etapas
         const promptOrigins = {};
-        if (window.WORKFLOWS && window.WORKFLOWS['WF-INV']) {
-            window.WORKFLOWS['WF-INV'].steps.forEach(step => {
+        if (window.WORKFLOWS && window.WORKFLOWS[window.rgWorkspace.getData().workflowId]) {
+            window.WORKFLOWS[window.rgWorkspace.getData().workflowId].steps.forEach(step => {
                 if (step.prompts) {
                     step.prompts.forEach(pid => {
                         promptOrigins[pid] = { stepName: step.name, stepId: step.id };
@@ -311,7 +318,7 @@ class AppShell {
                 break;
             case 'export-word':
                 if (window.rgDocumentService) {
-                    window.rgDocumentService.exportToWord(wid);
+                    window.rgExportService.exportResearch({format: 'docx', workspaceId: wid});
                 }
                 break;
             case 'backup':
@@ -334,8 +341,11 @@ class AppShell {
                 break;
         }
     }
+    startNewProject(workflowId) {
+        this._showWizardModal(workflowId);
+    }
 
-    _showWizardModal() {
+    _showWizardModal(defaultWorkflowId = (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV')) {
         const modalOverlay = document.createElement('div');
         modalOverlay.className = 'modal-overlay';
         modalOverlay.style.cssText = `
@@ -414,9 +424,9 @@ class AppShell {
                 <div class="form-group" style="display: flex; flex-direction: column; gap: var(--space-2);">
                     <label style="font-weight: 600; font-size: var(--text-sm); color: var(--color-gray-800);">Metodologia</label>
                     <div style="display: flex; align-items: center; gap: 8px; padding: var(--space-3); border: 1px solid var(--color-gray-200); border-radius: 8px; background: var(--color-gray-50); color: var(--color-gray-700); font-size: var(--text-sm);">
-                        <span style="color: var(--color-success); font-weight: bold;">✓</span> Revisão da Literatura
+                        <span style="color: var(--color-success); font-weight: bold;">✓</span> ${defaultWorkflowId === 'WF-SUP' ? 'Supervisão Académica com IA' : 'Revisão da Literatura'}
                     </div>
-                    <p style="font-size: 11px; color: var(--color-gray-500); margin-top: 4px;">Primeiro protocolo disponível.</p>
+                    <p style="font-size: 11px; color: var(--color-gray-500); margin-top: 4px;">Protocolo selecionado.</p>
                 </div>
             </div>
 
@@ -567,7 +577,7 @@ class AppShell {
             const title = inputTitle.value.trim();
             const selectedRadio = Array.from(radios).find(r => r.checked)?.value;
             const area = selectedRadio === 'Outra' ? inputOtherArea.value.trim() : selectedRadio;
-            const protocol = 'WF-INV';
+            const protocol = defaultWorkflowId;
 
             if (title.length > 0 && area.length > 0) {
                 formContent.style.display = 'none';
@@ -702,6 +712,8 @@ class AppShell {
         modal.style.cssText = `
             width: 90%;
             max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
             background: white;
             border-radius: 8px;
             padding: var(--space-6);
@@ -772,6 +784,8 @@ class AppShell {
         modal.style.cssText = `
             width: 90%;
             max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
             background: white;
             border-radius: 8px;
             padding: var(--space-6);
@@ -813,7 +827,7 @@ class AppShell {
     }
 
     renderMainWorkspace() {
-        const protocolData = window.WORKFLOWS && window.WORKFLOWS['WF-INV'] ? window.WORKFLOWS['WF-INV'] : null;
+        const protocolData = window.WORKFLOWS && window.WORKFLOWS[window.rgWorkspace.getData().workflowId] ? window.WORKFLOWS[window.rgWorkspace.getData().workflowId] : null;
         let currentStepId = 'STEP-INV-01'; // Default, progressView or stepView will update it, but let's try to get current from Workspace
         if (window.rgWorkspace) {
             currentStepId = window.rgWorkspace.getData().currentStepId || currentStepId;

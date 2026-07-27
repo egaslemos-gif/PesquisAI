@@ -6,16 +6,22 @@ class QuestionRule {
     evaluate(context) {
         if (!context.artifacts) return null;
         
-        // Em WF-INV, S3 é a Pergunta de Investigação
-        const questionText = context.artifacts['S3'];
+        let questionText = null;
+        let targetStepId = 'S3';
+        if (window.rgEngine && window.rgEngine.getWorkflow()) {
+            const step = window.rgEngine.getWorkflow().steps.find(s => s.focus === 'question' || (s.evaluates && s.evaluates.includes('question')) || s.id === 'S3' || s.id === 'STEP-INV-03');
+            if (step) targetStepId = step.id;
+        }
+        questionText = context.artifacts[targetStepId];
+
         if (!questionText || questionText.trim() === '') {
-            if (context.stage && context.stage.currentStepId === 'S3') {
+            if (context.stage && context.stage.currentStepId === targetStepId) {
                 return {
                     severity: 'ERROR',
                     message: 'Não foi definida qualquer pergunta de investigação.',
                     suggestion: 'A pergunta é o motor da sua investigação.',
                     confidence: 1.0,
-                    stepId: 'S3'
+                    stepId: targetStepId
                 };
             }
             return null;
@@ -31,7 +37,7 @@ class QuestionRule {
                 message: 'A pergunta contém conectores lógicos ("e" / "ou").',
                 suggestion: 'A pergunta contém duas variáveis. Considere simplificar para manter o foco.',
                 confidence: 0.88,
-                stepId: 'S3'
+                stepId: targetStepId
             });
         }
 
@@ -41,7 +47,7 @@ class QuestionRule {
                 message: 'A formulação não parece ser uma pergunta.',
                 suggestion: 'Termine com um ponto de interrogação (?).',
                 confidence: 0.95,
-                stepId: 'S3'
+                stepId: targetStepId
             });
         }
 

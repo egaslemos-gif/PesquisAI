@@ -1661,3 +1661,145 @@
     position: relative;
     z-index: 1;
 }
+
+/* Semantic Icons (RFC-024A) */
+.semantic-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin: 0 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.semantic-icon[data-state="unavailable"] {
+    opacity: 0.4;
+    color: var(--color-gray-400);
+    cursor: not-allowed;
+}
+.semantic-icon[data-state="available"] {
+    opacity: 0.85;
+    color: var(--color-primary-600);
+    background-color: var(--color-primary-50);
+}
+.semantic-icon[data-state="active"] {
+    opacity: 1;
+    color: var(--color-primary-700);
+    background-color: var(--color-primary-100);
+    box-shadow: 0 0 0 1px var(--color-primary-300);
+}
+.semantic-icon[data-state="completed"] {
+    opacity: 1;
+    color: var(--color-success);
+    background-color: var(--color-success-light);
+}
+
+@media (hover: hover) {
+    .semantic-icon:not([data-state="unavailable"]):hover {
+        transform: scale(1.15);
+    }
+}
+.semantic-icon.force-tooltip {
+    transform: scale(1.15);
+}
+
+.semantic-icon .tooltip-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background-color: var(--color-gray-900);
+    color: white;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 100;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    pointer-events: none;
+    line-height: 1.4;
+}
+
+.semantic-icon .tooltip-content::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--color-gray-900) transparent transparent transparent;
+}
+
+.semantic-icon .tooltip-title {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.semantic-icon .tooltip-desc {
+    color: var(--color-gray-300);
+    display: block;
+}
+
+@media (hover: hover) {
+    .semantic-icon:not([data-state="unavailable"]):hover .tooltip-content {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.semantic-icon.force-tooltip .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.rar-overall-score {
+    font-size: 3.5rem;
+}
+
+@media (max-width: 768px) {
+    .rar-overall-score {
+        font-size: 2.5rem;
+    }
+}
+
+/* Timeline Stepper Connector Lines */
+.semantic-step-item {
+    position: relative;
+    z-index: 1;
+}
+
+.semantic-step-item::after {
+    content: '';
+    position: absolute;
+    top: 22px; /* 8px padding + 14px (half of 28px circle) */
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: var(--color-gray-200);
+    z-index: -1;
+}
+
+.semantic-step-item:last-child::after {
+    display: none;
+}
+
+.semantic-step-item.completed::after {
+    background: var(--color-success);
+}
+
+@media (max-width: 768px) {
+    .semantic-step-item::after {
+        top: 20px; /* 8px padding + 12px (half of 24px circle) */
+    }
+}

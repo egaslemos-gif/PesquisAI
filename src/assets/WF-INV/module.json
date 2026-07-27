@@ -1,0 +1,17 @@
+{
+    "schemaVersion": "1.0",
+    "id": "WF-INV",
+    "title": "Investigador",
+    "version": "1.0",
+    "role": "investigator",
+    "status": "stable",
+    "minCoreVersion": "1.0",
+    "workflow": "workflow/",
+    "assets": [
+        "knowledge",
+        "prompts",
+        "checklists",
+        "examples"
+    ],
+    "dependencies": []
+}

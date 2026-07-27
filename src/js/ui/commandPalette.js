@@ -335,7 +335,7 @@ class CommandPalette {
                 if (!workspaceId) return;
 
                 if (actionType === 'export-word' && window.rgDocumentService) {
-                    window.rgDocumentService.exportToWord(workspaceId);
+                    window.rgExportService.exportResearch({format: 'docx', workspaceId: workspaceId});
                 } else if (actionType === 'backup' && window.rgDocumentService) {
                     window.rgDocumentService.exportBackup(workspaceId);
                 } else if (actionType === 'archive' && window.rgResearchIdentity) {

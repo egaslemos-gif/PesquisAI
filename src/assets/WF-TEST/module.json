@@ -1,0 +1,17 @@
+{
+    "schemaVersion": "1.0",
+    "id": "WF-TEST",
+    "title": "Módulo de Validação",
+    "version": "1.0",
+    "role": "tester",
+    "status": "stable",
+    "minCoreVersion": "1.0",
+    "workflow": "workflow/",
+    "assets": [
+        "knowledge",
+        "prompts",
+        "checklists",
+        "examples"
+    ],
+    "dependencies": []
+}

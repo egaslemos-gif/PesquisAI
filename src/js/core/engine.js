@@ -102,6 +102,7 @@ class Engine {
             return true;
         } else {
             // Workflow concluído
+            this.workspace.markAsCompleted();
             if (window.rgEventBus) {
                 window.rgEventBus.emit('workflow:completed', this.workspace.getData());
             }

@@ -1,4 +1,4 @@
-const TOOLS = {
+// Deprecated\n// Será removido na RC2.\nconst TOOLS = {
     "tool-chatgpt": {
         id: "tool-chatgpt",
         name: "ChatGPT",
@@ -16,7 +16,7 @@ const TOOLS = {
     "tool-claude": {
         id: "tool-claude",
         name: "Claude",
-        url: "https://claude.ai",
+        url: "https://claude.ai/new",
         type: "LLM",
         description: "O melhor modelo para redação académica fluida e revisão de texto e estilo.",
         isFree: true,

@@ -1,0 +1,17 @@
+{
+    "schemaVersion": "1.0",
+    "id": "WF-SUP",
+    "title": "Supervisor",
+    "version": "1.0",
+    "role": "supervisor",
+    "status": "stable",
+    "minCoreVersion": "1.0",
+    "workflow": "workflow/",
+    "assets": [
+        "knowledge",
+        "prompts",
+        "checklists",
+        "examples"
+    ],
+    "dependencies": []
+}

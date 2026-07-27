@@ -8,7 +8,7 @@ class Workspace {
         // Estado por defeito
         this.data = {
             id: null,
-            workflowId: 'WF-INV',
+            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
             currentStepId: 'STEP-INV-01',
             area: '',
             artifacts: {
@@ -104,6 +104,14 @@ class Workspace {
                 window.rgEventBus.emit('step:changed', stepId);
             }
         }
+    }
+
+    /**
+     * Marca o workspace como concluído (todas as etapas foram finalizadas)
+     */
+    markAsCompleted() {
+        this.data.status = 'completed';
+        this._notifyAndSave('WORKSPACE_COMPLETED');
     }
 
     /**
@@ -280,7 +288,7 @@ class Workspace {
         // Por simplificação no MVP, vamos buscar ao WORKFLOWS global.
         if (!window.WORKFLOWS) return;
         
-        const steps = window.WORKFLOWS['WF-INV'].steps;
+        const steps = window.WORKFLOWS[this.data.workflowId].steps;
         const changedIndex = steps.findIndex(s => s.id === changedStepId);
         
         if (changedIndex === -1) return;
@@ -361,7 +369,7 @@ class Workspace {
             id: 'proj_' + Date.now(),
             title: metadata.title || 'Investigação Sem Título',
             area: metadata.area || 'Área não definida',
-            workflowId: metadata.workflowId || 'WF-INV',
+            workflowId: metadata.workflowId || (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
             status: 'ACTIVE',
             createdAt: now,
             updatedAt: now,
@@ -386,7 +394,7 @@ class Workspace {
     resetWorkspace(actionType = 'WORKSPACE_RESET') {
         this.data = {
             id: 'proj_' + Date.now(),
-            workflowId: 'WF-INV',
+            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
             currentStepId: 'STEP-INV-01',
             title: '',
             area: '',
@@ -408,7 +416,7 @@ class Workspace {
     closeWorkspace() {
         this.data = {
             id: null,
-            workflowId: 'WF-INV',
+            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
             currentStepId: 'STEP-INV-01',
             title: '',
             area: '',

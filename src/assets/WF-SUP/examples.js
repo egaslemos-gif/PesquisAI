@@ -1,0 +1,1 @@
+window.EXAMPLES = window.EXAMPLES || {};

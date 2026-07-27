@@ -16,12 +16,15 @@ class AssetResolver {
         const resolved = {};
 
         // Resolver Knowledge
-        if (step.assets.knowledge) {
-            resolved.knowledge = {
-                bestPractices: step.bestPractices || null,
-                commonErrors: step.commonErrors || null,
-                learningObjectives: step.learningObjectives || null
-            };
+        if (step.assets.knowledge && step.knowledgeId && window.KNOWLEDGE) {
+            const kn = window.KNOWLEDGE[step.knowledgeId];
+            if (kn) {
+                resolved.knowledge = {
+                    bestPractices: kn.bestPractices || null,
+                    commonErrors: kn.commonErrors || null,
+                    learningObjectives: kn.learningOutcome || null
+                };
+            }
         }
 
         // Resolver Prompt
@@ -31,8 +34,8 @@ class AssetResolver {
         }
 
         // Resolver Checklist
-        if (step.assets.checklist && step.checklist) {
-            resolved.checklist = step.checklist;
+        if (step.assets.checklist && step.checklistId && window.CHECKLISTS) {
+            resolved.checklist = window.CHECKLISTS[step.checklistId];
         }
 
         // Resolver Review

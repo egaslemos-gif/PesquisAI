@@ -118,7 +118,7 @@ class ProjectExplorer {
         let countFail = 0;
         workspaces.forEach(ws => {
             if (ws.visibility !== 'archived') {
-                if (ws.reviewStatus === 'PASS') countOk++;
+                if (ws.status === 'completed' || ws.reviewStatus === 'PASS') countOk++;
                 else if (ws.reviewStatus === 'FAIL') countFail++;
                 else countProgress++;
             }
@@ -156,7 +156,10 @@ class ProjectExplorer {
         let statusClass = 'status-progress';
         let statusText = 'Em progresso';
         
-        if (ws.reviewStatus === 'PASS') {
+        if (ws.status === 'completed') {
+            statusClass = 'status-ok';
+            statusText = 'Concluído';
+        } else if (ws.reviewStatus === 'PASS') {
             statusClass = 'status-ok';
             statusText = 'Concluído';
         } else if (ws.reviewStatus === 'FAIL') {

@@ -33,11 +33,22 @@
 
                 <!-- Zona 2: Navegação (Center) -->
                 <div class="header-zone zone-nav" id="header-zone-nav">
-                    <button id="btn-go-home" class="btn-app-bar active">
-                        <span class="icon-slot" data-icon="home"></span> As minhas investigações
+                    <button id="btn-mobile-menu" class="btn-app-bar hidden-desktop" title="Menu">
+                        <span class="icon-slot" data-icon="menu"></span>
                     </button>
+                    <div id="nav-dropdown" class="nav-dropdown">
+                        <button id="btn-go-home" class="btn-app-bar active" title="As minhas investigações">
+                            <span class="icon-slot" data-icon="home"></span> <span class="btn-text">As minhas investigações</span>
+                        </button>
+                        <button id="btn-competency-hub" class="btn-app-bar" title="Centro de Competências IA">
+                            <span class="icon-slot" data-icon="layers"></span> <span class="btn-text">Competências</span>
+                        </button>
+                        <button id="btn-resource-hub" class="btn-app-bar" title="Centro de Recursos IA">
+                            <span class="icon-slot" data-icon="lightbulb"></span> <span class="btn-text">Recursos IA</span>
+                        </button>
+                    </div>
                     <button id="btn-search-artifacts" class="search-bar-btn" title="Pesquisar (Ctrl+K)">
-                        <span class="icon-slot" data-icon="search"></span> Pesquisar...
+                        <span class="icon-slot" data-icon="search"></span> <span class="btn-text">Pesquisar...</span>
                     </button>
                     <button id="btn-enter-selection-mode" class="btn-app-bar hidden" style="color: var(--color-gray-500);">
                         Selecionar projetos
@@ -64,13 +75,16 @@
 
                 <!-- Zona 3: Utilizador (Right) -->
                 <div class="header-zone zone-user" id="header-zone-user">
-                    <div class="header-rid-badge" title="Research Identity">
-                        <span class="rid-label">RID</span>
-                        <span class="rid-value" id="rid-display-value">#•••</span>
+                    <div class="header-rid-badge" title="Research Identity" style="cursor: pointer;">
+                        <span class="icon-slot hidden-desktop" data-icon="hash"></span>
+                        <span class="btn-text">
+                            <span class="rid-label">RID</span>
+                            <span class="rid-value" id="rid-display-value">#•••</span>
+                        </span>
                     </div>
 
-                    <div class="user-badge" id="workflow-badge">
-                        <span class="icon-slot" data-icon="user"></span> Investigador
+                    <div class="user-badge" id="workflow-badge" title="Investigador">
+                        <span class="icon-slot" data-icon="user"></span> <span class="btn-text">Investigador</span>
                     </div>
                     
                     <button id="btn-reset-project" class="btn btn-primary btn-app-action" title="Novo Projeto">
@@ -92,12 +106,10 @@
     <script src="https://unpkg.com/docx@7.8.2/build/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
-    <!-- Data Modules (Constants) -->
-    <script src="./src/data/prompts.js?v=12"></script>
-    <script src="./src/data/tools.js?v=12"></script>
-    <script src="./src/data/workflows.js?v=12"></script>
+    <script src="./src/assets/shared/competencies.js?v=12"></script>
+    <script src="./src/assets/shared/tools.js?v=12"></script>
 
-    <!-- Icons Utility -->
+    <!-- Core Engine -->
     <script src="./src/js/ui/icons.js?v=12"></script>
 
     <!-- Core & Services -->
@@ -110,13 +122,15 @@
     <script src="./src/js/services/template.js?v=12"></script>
     <script src="./src/js/services/validation.js?v=12"></script>
     <script src="./src/js/services/document.js?v=12"></script>
+    <script src="./src/js/services/exportService.js?v=12"></script>
+    <script src="./src/js/services/exportWord.js?v=12"></script>
     <script src="./src/js/core/reviewEngine.js?v=12"></script>
     <script src="./src/js/core/assetResolver.js?v=12"></script>
     <script src="./src/js/core/renderingEngine.js?v=12"></script>
     <script src="./src/js/core/panelRegistry.js?v=12"></script>
     <script src="./src/js/core/workspace.js?v=12"></script>
+    <script src="./src/js/core/moduleLoader.js?v=12"></script>
     <script src="./src/js/core/engine.js?v=12"></script>
-
     <!-- Methodology Intelligence Engine -->
     <script src="./src/js/services/methodology/MethodologyEngine.js?v=12"></script>
     <script src="./src/js/services/methodology/rules/theme.rule.js?v=12"></script>
@@ -142,6 +156,14 @@
     <script src="./src/js/ui/commandPalette.js?v=12"></script>
     <script src="./src/js/ui/reviewModal.js?v=12"></script>
     <script src="./src/js/ui/events.js?v=12"></script>
+
+    <script src="./src/js/ui/semanticIcons.js?v=12"></script>
+
+    <script src="./src/js/modules/resources/ResourceCard.js?v=12"></script>
+    <script src="./src/js/modules/resources/AIResourceHub.js?v=12"></script>
+    
+    <script src="./src/js/modules/competencies/CompetencyCard.js?v=12"></script>
+    <script src="./src/js/modules/competencies/ResearchCompetencyHub.js?v=12"></script>
 
     <!-- Entry Point -->
     <script src="./src/js/app.js?v=12"></script>

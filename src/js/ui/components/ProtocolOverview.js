@@ -39,13 +39,13 @@ class ProtocolOverview {
             let area = data.area || '';
             let tema = window.rgWorkspace.getArtifactByVariable('TEMA') || data.title || '';
             
-            if (tema.length > 80) tema = tema.substring(0, 80) + '...';
+            // No truncation applied to theme, let it wrap
 
             if (area || tema) {
                 themeData = `
                 <div class="theme-data-container" style="display: flex; flex-direction: column; gap: 4px; margin-left: auto; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; max-width: 50%;">
                     ${area ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área: ${area}</div>` : ''}
-                    ${tema ? `<div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div>` : ''}
+                    ${tema ? `<div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; word-break: break-word;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div>` : ''}
                 </div>`;
             }
         }
@@ -55,7 +55,7 @@ class ProtocolOverview {
             <div class="protocol-overview-ribbon" style="display: flex; flex-direction: column; gap: 0.5rem; padding: 1.5rem; background: var(--color-white); border-bottom: 1px solid var(--color-gray-200); margin-bottom: 1.5rem; width: 100%;">
                 <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;">
                     <div style="display: flex; align-items: baseline; gap: 0.75rem;">
-                        <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary-600); background: var(--color-primary-50); padding: 0.2rem 0.5rem; border-radius: 4px;">${protocolData.id}</span>
+                        <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary-600); background: var(--color-primary-50); padding: 0.2rem 0.5rem; border-radius: 4px;">Protocolo</span>
                         <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--color-gray-900); margin: 0;">${protocolData.name}</h2>
                     </div>
                     ${themeData}
@@ -68,19 +68,45 @@ class ProtocolOverview {
                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                         <span style="font-weight: 600; color: var(--color-primary-600);">${progressPercent}%</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
-                        <span>⏱️ ${protocolData.estimatedTime || 'N/A'}</span>
-                    </div>
                     
                     <div style="flex: 1;"></div>
                     
-                    <div style="display: flex; align-items: center; gap: 1rem; font-size: 0.8rem;">
-                        ${knowledgeCount > 0 ? `<span title="Conhecimento" style="display: flex; align-items: center; gap: 4px;">${window.SVGIcons ? window.SVGIcons.bookOpen : '📘'} ${knowledgeCount}</span>` : ''}
-                        ${promptCount > 0 ? `<span title="Prompts" style="display: flex; align-items: center; gap: 4px;">${window.SVGIcons ? window.SVGIcons.brain : '🤖'} ${promptCount}</span>` : ''}
-                        ${checklistCount > 0 ? `<span title="Checklists" style="display: flex; align-items: center; gap: 4px;">${window.SVGIcons ? window.SVGIcons.clipboardCheck : '☑'} ${checklistCount}</span>` : ''}
-                        ${reviewCount > 0 ? `<span title="Revisão" style="display: flex; align-items: center; gap: 4px;">${window.SVGIcons ? window.SVGIcons.scale : '⚖️'} ${reviewCount}</span>` : ''}
-                        ${examplesCount > 0 ? `<span title="Exemplos" style="display: flex; align-items: center; gap: 4px;">${window.SVGIcons ? window.SVGIcons.lightbulb : '💡'} ${examplesCount}</span>` : ''}
-                        ${toolsCount > 0 ? `<span title="Ferramentas" style="display: flex; align-items: center; gap: 4px;">${window.SVGIcons ? window.SVGIcons.wrench : '🛠️'} ${toolsCount}</span>` : ''}
+                    <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem;">
+                        ${knowledgeCount > 0 ? `
+                        <div class="semantic-icon" data-state="available" role="button" tabindex="0" aria-label="Conhecimento: Boas práticas, conceitos e exemplos">
+                            ${window.SVGIcons?.bookOpen || '📘'}
+                            <div class="tooltip-content"><span class="tooltip-title">Conhecimento</span><span class="tooltip-desc">Boas práticas, conceitos e exemplos</span></div>
+                        </div> <span style="font-weight: 600; color: var(--color-gray-700); margin-right: 0.5rem;">${knowledgeCount}</span>` : ''}
+                        
+                        ${promptCount > 0 ? `
+                        <div class="semantic-icon" data-state="available" role="button" tabindex="0" aria-label="Prompt IA: Prompt recomendado para esta etapa">
+                            ${window.SVGIcons?.brain || '🤖'}
+                            <div class="tooltip-content"><span class="tooltip-title">Prompt IA</span><span class="tooltip-desc">Prompt recomendado para esta etapa</span></div>
+                        </div> <span style="font-weight: 600; color: var(--color-gray-700); margin-right: 0.5rem;">${promptCount}</span>` : ''}
+                        
+                        ${checklistCount > 0 ? `
+                        <div class="semantic-icon" data-state="available" role="button" tabindex="0" aria-label="Checklist: Critérios que devem ser cumpridos">
+                            ${window.SVGIcons?.clipboardCheck || '☑'}
+                            <div class="tooltip-content"><span class="tooltip-title">Checklist</span><span class="tooltip-desc">Critérios que devem ser cumpridos</span></div>
+                        </div> <span style="font-weight: 600; color: var(--color-gray-700); margin-right: 0.5rem;">${checklistCount}</span>` : ''}
+                        
+                        ${reviewCount > 0 ? `
+                        <div class="semantic-icon" data-state="available" role="button" tabindex="0" aria-label="Revisão: Avaliação metodológica da etapa">
+                            ${window.SVGIcons?.scale || '⚖️'}
+                            <div class="tooltip-content"><span class="tooltip-title">Revisão</span><span class="tooltip-desc">Avaliação metodológica da etapa</span></div>
+                        </div> <span style="font-weight: 600; color: var(--color-gray-700); margin-right: 0.5rem;">${reviewCount}</span>` : ''}
+                        
+                        ${examplesCount > 0 ? `
+                        <div class="semantic-icon" data-state="available" role="button" tabindex="0" aria-label="Exemplos: Exemplos inspiradores para a etapa">
+                            ${window.SVGIcons?.lightbulb || '💡'}
+                            <div class="tooltip-content"><span class="tooltip-title">Exemplos</span><span class="tooltip-desc">Exemplos inspiradores para a etapa</span></div>
+                        </div> <span style="font-weight: 600; color: var(--color-gray-700); margin-right: 0.5rem;">${examplesCount}</span>` : ''}
+                        
+                        ${toolsCount > 0 ? `
+                        <div class="semantic-icon" data-state="available" role="button" tabindex="0" aria-label="Ferramentas: Ferramentas recomendadas">
+                            ${window.SVGIcons?.wrench || '🛠️'}
+                            <div class="tooltip-content"><span class="tooltip-title">Ferramentas</span><span class="tooltip-desc">Ferramentas recomendadas</span></div>
+                        </div> <span style="font-weight: 600; color: var(--color-gray-700); margin-right: 0.5rem;">${toolsCount}</span>` : ''}
                     </div>
                 </div>
             </div>

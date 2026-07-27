@@ -15,7 +15,9 @@ const ALLOWED_EVENTS = [
     'prompt:copied',
     'rid:loaded',
     'researchEvents:loaded',
-    'research:updated'
+    'research:updated',
+    'navigation:home',
+    'navigation:new-project'
 ];
 
 class EventBus {

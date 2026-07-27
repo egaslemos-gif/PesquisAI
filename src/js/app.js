@@ -43,8 +43,52 @@ document.addEventListener('DOMContentLoaded', () => {
         window.rgWorkspace.init(savedData);
     }
 
-    // 5. Inicializar o Engine do Workflow
-    if (window.rgEngine) {
-        window.rgEngine.init();
+    // Initialize AI Resource Hub
+    if (window.AIResourceHub) {
+        window.rgAIResourceHub = new window.AIResourceHub();
+        window.rgAIResourceHub.init();
+    }
+
+    // Initialize Research Competency Hub
+    if (window.ResearchCompetencyHub) {
+        window.researchCompetencyHubInstance = new window.ResearchCompetencyHub();
+        window.researchCompetencyHubInstance.init();
+    }
+
+    // 5. Load Modules and Initialize Engine
+    if (window.rgModuleLoader) {
+        window.rgModuleLoader.initAll().then(() => {
+            if (window.rgEngine) {
+                window.rgEngine.init();
+            }
+        });
+    } else {
+        if (window.rgEngine) {
+            window.rgEngine.init();
+        }
+    }
+
+    // Mobile Menu Toggle Logic
+    const btnMobileMenu = document.getElementById('btn-mobile-menu');
+    const navDropdown = document.getElementById('nav-dropdown');
+    if (btnMobileMenu && navDropdown) {
+        btnMobileMenu.addEventListener('click', (e) => {
+            navDropdown.classList.toggle('active');
+            e.stopPropagation();
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navDropdown.classList.contains('active') && !navDropdown.contains(e.target) && e.target !== btnMobileMenu) {
+                navDropdown.classList.remove('active');
+            }
+        });
+        
+        // Close menu when a link inside is clicked
+        navDropdown.addEventListener('click', (e) => {
+            if (e.target.closest('button')) {
+                navDropdown.classList.remove('active');
+            }
+        });
     }
 });
