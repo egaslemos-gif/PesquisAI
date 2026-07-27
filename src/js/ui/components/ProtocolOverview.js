@@ -44,8 +44,8 @@ class ProtocolOverview {
             if (area || tema) {
                 themeData = `
                 <div class="theme-data-container" style="display: flex; flex-direction: column; gap: 4px; margin-left: auto; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; max-width: 50%;">
-                    ${area ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área: ${area}</div>` : ''}
-                    ${tema ? `<div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; word-break: break-word;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div>` : ''}
+                    ${area ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500;">${area}</div>` : ''}
+                    ${tema ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-top: 4px;">Projeto:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; word-break: break-word;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div>` : ''}
                 </div>`;
             }
         }

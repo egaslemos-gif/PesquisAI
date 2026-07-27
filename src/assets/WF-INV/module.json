@@ -1,8 +1,8 @@
 {
     "schemaVersion": "1.0",
     "id": "WF-INV",
-    "title": "Investigador",
-    "version": "1.0.1",
+    "title": "Revisão da Literatura",
+    "version": "1.0.2",
     "role": "investigator",
     "status": "stable",
     "minCoreVersion": "1.0",
@@ -14,5 +14,5 @@
         "examples"
     ],
     "dependencies": [],
-    "assetVersion": "1.0.1"
+    "assetVersion": "1.0.2"
 }
