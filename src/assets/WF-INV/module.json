@@ -2,6 +2,7 @@
     "schemaVersion": "1.0",
     "id": "WF-INV",
     "title": "Revisão da Literatura",
+    "description": "Protocolo padronizado para pesquisa científica.",
     "version": "1.0.6",
     "role": "investigator",
     "status": "stable",

@@ -2,6 +2,7 @@
     "schemaVersion": "1.0",
     "id": "WF-SUP",
     "title": "Revisão Científica",
+    "description": "Protocolo para avaliação crítica e supervisão de investigação.",
     "version": "1.0.2",
     "role": "supervisor",
     "status": "stable",

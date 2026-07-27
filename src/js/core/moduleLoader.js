@@ -98,6 +98,7 @@ class ModuleLoader {
                 
                 if (window.WORKFLOW_METADATA && window.WORKFLOW_METADATA[moduleId] && window.WORKFLOW_STEPS && window.WORKFLOW_STEPS[moduleId]) {
                     window.WORKFLOWS[moduleId] = {
+                        ...manifest,
                         ...window.WORKFLOW_METADATA[moduleId],
                         steps: window.WORKFLOW_STEPS[moduleId]
                     };
