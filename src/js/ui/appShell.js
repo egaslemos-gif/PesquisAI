@@ -260,14 +260,14 @@ class AppShell {
         modal.querySelector('#btn-import-confirm').addEventListener('click', () => {
             const success = window.rgBackup.commitImport(analysis.rawData);
             if (success) {
-                modal.innerHTML = \`
+                modal.innerHTML = `
                     <div style="background: white; border-radius: 12px; width: 400px; max-width: 90%; padding: 32px 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center;">
                         <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
                         <h3 style="margin: 0 0 16px 0; font-size: 18px;">Importação Concluída</h3>
                         <p style="font-size: 14px; color: var(--color-gray-600); margin-bottom: 24px;">Os seus dados foram restaurados com sucesso.</p>
                         <button class="btn btn-primary" style="width: 100%;" onclick="window.location.reload();">Reiniciar Aplicação</button>
                     </div>
-                \`;
+                `;
             } else {
                 if (window.rgEventBus) {
                     window.rgEventBus.emit('toast:show', { message: 'Falha ao importar backup.', type: 'error' });

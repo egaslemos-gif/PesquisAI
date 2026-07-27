@@ -8,8 +8,8 @@ class Workspace {
         // Estado por defeito
         this.data = {
             id: null,
-            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'default'),
-            currentStepId: window.WORKFLOWS && window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]] ? window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]].steps[0].id : 'STEP-INV-01',
+            workflowId: null,
+            currentStepId: null,
             area: '',
             artifacts: {
                 // Mapeamento: stepId -> conteúdo do artefacto
