@@ -18,18 +18,19 @@ Object.assign(window.CHECKLISTS, {
         { "id": "chk-03-04", "label": "O conjunto de objetivos é suficiente para responder integralmente à Pergunta de Investigação?" }
     ],
     "CHK-STEP-INV-04": [
-        { "id": "chk-04-01", "label": "Foram identificados sinónimos em Inglês para os conceitos centrais?" },
-        { "id": "chk-04-02", "label": "As equações utilizam corretamente os operadores AND e OR?" },
-        { "id": "chk-04-03", "label": "Foram removidos termos genéricos (ex: 'vantagens', 'impacto')?" }
+        { "id": "chk-04-01", "label": "O investigador identificou todos os grandes 'blocos conceptuais' da pergunta antes de usar operadores lógicos?" },
+        { "id": "chk-04-02", "label": "Foram ponderados sinónimos em Inglês e termos indexados internacionais (ex: MeSH, DeCS)?" },
+        { "id": "chk-04-03", "label": "A estratégia de pesquisa foi limpa de termos vazios de significado (ex: 'estudo empírico', 'impacto')?" }
     ],
     "CHK-STEP-INV-05": [
-        { "id": "chk-05-01", "label": "Cada critério (inclusão e exclusão) possui uma justificação metodológica clara?" },
-        { "id": "chk-05-02", "label": "Os critérios de exclusão não são apenas o oposto óbvio dos de inclusão (ex: Inclusão: Adultos. Exclusão: Não-Adultos)?" },
-        { "id": "chk-05-03", "label": "Dois leitores diferentes chegariam à mesma conclusão sobre incluir/excluir um artigo com base nestas regras?" }
+        { "id": "chk-05-01", "label": "Os critérios de Inclusão são suficientemente fechados para manter a revisão exequível e reprodutível por outros?" },
+        { "id": "chk-05-02", "label": "Os critérios de Exclusão acrescentam restrições reais (e não são apenas a inversão gramatical da inclusão)?" },
+        { "id": "chk-05-03", "label": "Foi avaliado o risco de enviesamento (bias) que a aplicação destes critérios introduz na revisão?" }
     ],
     "CHK-STEP-INV-06": [
-        { "id": "chk-06-01", "label": "A equação booleana retornou um número de resultados viável para o meu estudo (nem 10, nem 10.000)?" },
-        { "id": "chk-06-02", "label": "Registei a data da pesquisa e o número total de resultados (essencial para a secção de Metodologia)?" }
+        { "id": "chk-06-01", "label": "Foi avaliado se o volume de resultados indica 'Ruído' (demasiado amplo) ou 'Silêncio' (demasiado restritivo)?" },
+        { "id": "chk-06-02", "label": "A distribuição dos primeiros artigos parece correta face às expectativas da área (ex: revistas e autores adequados)?" },
+        { "id": "chk-06-03", "label": "Registei a data da pesquisa e o número total de resultados nas respetivas bases?" }
     ],
     "CHK-STEP-INV-07": [
         { "id": "chk-07-01", "label": "A decisão de inclusão/exclusão baseou-se estritamente nos critérios definidos na etapa 5?" },

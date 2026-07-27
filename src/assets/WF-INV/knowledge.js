@@ -20,21 +20,21 @@ Object.assign(window.KNOWLEDGE, {
     },
     "KN-STEP-INV-04": {
         "id": "KN-STEP-INV-04",
-        "learningOutcome": "Traduzir a pergunta de investigação em vocabulário controlado e expressões booleanas prontas a usar em motores de busca científicos.",
-        "bestPractices": "Identifique apenas 2 a 4 conceitos centrais. Procure os termos correspondentes em Inglês, pois a maioria da literatura de alto impacto encontra-se nesse idioma.",
-        "commonErrors": "Usar palavras de ligação (como, qual, impacto) nas pesquisas, em vez de focar apenas nos substantivos conceptuais."
+        "learningOutcome": "Construir uma Estratégia de Pesquisa sólida (conceitos -> sinónimos -> booleanos).",
+        "bestPractices": "Pense primeiro nos grandes conceitos centrais, independentemente da palavra exata. Questione-se: 'Se tivesses de explicar este tema a um investigador de outro país, que termos técnicos internacionais utilizarias?'. O uso de descritores (MeSH, DeCS) é crucial.",
+        "commonErrors": "Tentar construir a equação booleana (AND/OR) antes de ter o mapa conceptual definido, ou incluir palavras de ligação (impacto, análise)."
     },
     "KN-STEP-INV-05": {
         "id": "KN-STEP-INV-05",
-        "learningOutcome": "Estabelecer regras de triagem objetivas para garantir que apenas os estudos mais relevantes para a pergunta são incluídos.",
-        "bestPractices": "Os critérios devem ser tão claros que dois investigadores independentes, ao lerem um resumo, tomariam a mesma decisão (incluir ou excluir). O critério de exclusão não deve ser apenas o reverso do critério de inclusão.",
-        "commonErrors": "Usar critérios vagos como 'artigos bons' ou 'artigos recentes' sem especificar os parâmetros temporais ou qualitativos."
+        "learningOutcome": "Estabelecer regras de triagem metodológicas, reprodutíveis e conscientes do seu próprio enviesamento (bias).",
+        "bestPractices": "Os critérios devem ser tão claros que dois investigadores independentes tomariam a mesma decisão. Preste atenção ao risco de enviesamento (ex: excluir estudos qualitativos pode enviesar as conclusões).",
+        "commonErrors": "Assumir que o critério de exclusão é apenas a negação gramatical da inclusão (ex: Inclusão: Jovens. Exclusão: Não-Jovens). A exclusão serve para rejeitar artigos que pareciam elegíveis, mas têm falhas ou âmbitos que não servem a revisão."
     },
     "KN-STEP-INV-06": {
         "id": "KN-STEP-INV-06",
-        "learningOutcome": "Recolher um volume adequado e pertinente de publicações nas bases de dados científicas usando equações de pesquisa validadas.",
-        "bestPractices": "Adapte a equação à sintaxe de cada base (ex: Scopus usa TITLE-ABS-KEY, PubMed usa [Title/Abstract]). Registre sempre a data da pesquisa e o número de resultados iniciais.",
-        "commonErrors": "Pesquisar por frases inteiras em vez de conceitos Booleanos (AND/OR)."
+        "learningOutcome": "Saber diagnosticar 'Ruído' (resultados excessivos e irrelevantes) e 'Silêncio' (escassez de resultados por sobre-restrição) nas bases de dados.",
+        "bestPractices": "Avalie sempre os primeiros 10-20 resultados para verificar a distribuição e pertinência. O número ideal de resultados não é fixo; depende da maturidade do tema. Remova o conceito menos nuclear se tiver Silêncio absoluto.",
+        "commonErrors": "Considerar que uma pesquisa com 5.000 resultados é 'um sucesso', sem perceber que isso constitui um Ruído metodológico que torna a revisão inexequível."
     },
     "KN-STEP-INV-07": {
         "id": "KN-STEP-INV-07",
