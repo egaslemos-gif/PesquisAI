@@ -44,7 +44,7 @@ class DocumentService {
         children.push(new Paragraph({
             children: [
                 new TextRun({ text: "Protocolo: ", bold: true }),
-                new TextRun(protocolId),
+                new TextRun(window.WORKFLOWS && window.WORKFLOWS[protocolId] ? window.WORKFLOWS[protocolId].title : protocolId),
             ],
             spacing: { after: 100 }
         }));

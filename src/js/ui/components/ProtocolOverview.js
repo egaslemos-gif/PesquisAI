@@ -54,9 +54,14 @@ class ProtocolOverview {
         return `
             <div class="protocol-overview-ribbon" style="display: flex; flex-direction: column; gap: 0.5rem; padding: 1.5rem; background: var(--color-white); border-bottom: 1px solid var(--color-gray-200); margin-bottom: 1.5rem; width: 100%;">
                 <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div style="display: flex; align-items: baseline; gap: 0.75rem;">
-                        <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary-600); background: var(--color-primary-50); padding: 0.2rem 0.5rem; border-radius: 4px;">Protocolo</span>
-                        <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--color-gray-900); margin: 0;">${protocolData.name}</h2>
+                    <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-gray-600); background: var(--color-gray-100); padding: 0.15rem 0.4rem; border-radius: 4px; text-transform: uppercase;">Perfil: ${protocolData.name || 'Investigador'}</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; gap: 0.75rem;">
+                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary-600); background: var(--color-primary-50); padding: 0.2rem 0.5rem; border-radius: 4px;">Protocolo</span>
+                            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--color-gray-900); margin: 0;">${protocolData.title || protocolData.name}</h2>
+                        </div>
                     </div>
                     ${themeData}
                 </div>

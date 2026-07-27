@@ -217,7 +217,7 @@ class AppShell {
                     <p style="margin: 0 0 12px 0; font-size: 14px; color: var(--color-gray-700);">O ficheiro contém:</p>
                     <ul style="margin: 0 0 12px 0; padding-left: 20px; font-size: 14px; color: var(--color-gray-800);">
                         <li>✔ <strong>${analysis.stats.workspaces}</strong> Projetos/Investigações</li>
-                        <li>✔ <strong>${analysis.stats.hasIdentity ? '1' : '0'}</strong> Perfil de Investigador</li>
+                        <li>✔ <strong>${analysis.stats.hasIdentity ? '1' : '0'}</strong> Identidade de Utilizador</li>
                         <li>✔ Backup criado em <strong>${dateFormatted}</strong></li>
                     </ul>
                     <p style="margin: 0; font-size: 12px; color: var(--color-gray-500);">Versão: ${analysis.version}</p>
@@ -463,7 +463,7 @@ class AppShell {
                                 <div class="library-prompt-origin">
                                     <span class="knowledge-label">Origem</span>
                                     ${origin
-                                        ? `Também disponível no <strong>Protocolo RL-01</strong> — Etapa: ${origin.stepName}. Pode ser utilizado isoladamente.`
+                                        ? `Também disponível no <strong>Protocolo associado</strong> — Etapa: ${origin.stepName}. Pode ser utilizado isoladamente.`
                                         : `Prompt independente da Biblioteca.`
                                     }
                                 </div>
@@ -974,7 +974,7 @@ class AppShell {
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <span style="color: var(--color-gray-500); font-size: 13px;">Protocolo</span>
-                    <span style="font-weight: 500; font-size: 13px; color: var(--color-gray-800);">${ws.protocolId}</span>
+                    <span style="font-weight: 500; font-size: 13px; color: var(--color-gray-800);">${window.WORKFLOWS && window.WORKFLOWS[ws.protocolId] ? window.WORKFLOWS[ws.protocolId].title : ws.protocolId}</span>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <span style="color: var(--color-gray-500); font-size: 13px;">Data de Criação</span>
