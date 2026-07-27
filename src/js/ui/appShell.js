@@ -161,6 +161,8 @@ class AppShell {
                     
                     item.addEventListener('mouseenter', () => item.style.background = 'var(--color-gray-100)');
                     item.addEventListener('mouseleave', () => item.style.background = 'transparent');
+                });
+
             // Handlers
             menu.querySelector('[data-action="backup-export"]').addEventListener('click', () => {
                 menu.remove();
