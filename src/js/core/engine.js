@@ -21,10 +21,10 @@ class Engine {
         const wfId = data.workflowId;
         
         // Verifica se WORKFLOWS global foi carregado
-        if (window.WORKFLOWS && window.WORKFLOWS[wfId]) {
+        if (wfId && window.WORKFLOWS && window.WORKFLOWS[wfId]) {
             this.workflowDefinition = window.WORKFLOWS[wfId];
-        } else {
-            console.error(`[Engine] Workflow ${wfId} não encontrado nas constantes globais.`);
+        } else if (wfId) {
+            console.warn(`[Engine] Workflow ${wfId} não encontrado. A usar o modo por defeito.`);
         }
 
         if (window.rgEventBus) {
