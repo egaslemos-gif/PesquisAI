@@ -351,7 +351,11 @@ class Workspace {
                 currentStepId: this.data.currentStepId
             },
             protocol: protocol,
-            artifacts: this.data.artifacts || {},
+            artifacts: Object.keys(this.data.artifacts || {}).reduce((acc, key) => {
+                const val = this.data.artifacts[key];
+                acc[key] = (typeof val === 'object' && val.content !== undefined) ? val.content : val;
+                return acc;
+            }, {}),
             progress: {
                 completedSteps: Object.keys(this.data.artifacts || {}).length,
                 totalSteps: protocol ? protocol.steps.length : 0

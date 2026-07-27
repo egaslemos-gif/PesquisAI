@@ -11,7 +11,7 @@ class ProgressView {
 
     render(currentStepId) {
         const container = document.getElementById('progress-container');
-        const workflowId = window.rgWorkspace && window.rgWorkspace.getData() ? window.rgWorkspace.getData().protocolId : null;
+        const workflowId = window.rgWorkspace && window.rgWorkspace.getData() ? window.rgWorkspace.getData().workflowId : null;
         if (!container || !window.WORKFLOWS || !workflowId || !window.WORKFLOWS[workflowId]) return;
 
         const steps = window.WORKFLOWS[workflowId].steps;
