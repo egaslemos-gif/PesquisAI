@@ -14,6 +14,8 @@ const ALLOWED_EVENTS = [
     'toast:show',
     'prompt:copied',
     'rid:loaded',
+    'rid:updated',
+    'rar:updated',
     'researchEvents:loaded',
     'research:updated',
     'navigation:home',

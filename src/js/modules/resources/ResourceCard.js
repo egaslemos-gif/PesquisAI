@@ -23,6 +23,11 @@ class ResourceCard {
         let promptHtml = '';
         if (this.data.prompt) {
             let promptText = this.data.prompt.template || this.data.prompt;
+            if (Array.isArray(promptText)) {
+                promptText = promptText.join('\n');
+            } else if (typeof promptText !== 'string') {
+                promptText = String(promptText);
+            }
             // The user requested that we use [TEMA] instead of {{TEMA}} to signify it's a placeholder to fill manually
             promptText = promptText.replace(/{{TEMA}}/g, '[TEMA]')
                                    .replace(/{{area}}/g, '[AREA]')

@@ -72,82 +72,95 @@ class AppShell {
     }
 
     _initGlobalMenu() {
-        const btn = document.getElementById('btn-global-menu');
+        const btns = [
+            document.getElementById('btn-global-menu'),
+            document.getElementById('workflow-badge')
+        ].filter(Boolean);
+        
         const fileInput = document.getElementById('backup-file-input');
         
-        if (!btn) return;
+        if (btns.length === 0) return;
 
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const existing = document.getElementById('rg-global-menu');
-            if (existing) {
-                existing.remove();
-                return;
-            }
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const existing = document.getElementById('rg-global-menu');
+                if (existing) {
+                    existing.remove();
+                    // If we clicked a different button, we should still open the new one
+                    if (existing.getAttribute('data-trigger') === btn.id) {
+                        return;
+                    }
+                }
 
-            const rect = btn.getBoundingClientRect();
-            const menu = document.createElement('div');
-            menu.id = 'rg-global-menu';
-            menu.style.cssText = `
-                position: absolute;
-                top: ${rect.bottom + window.scrollY + 8}px;
-                left: ${rect.right + window.scrollX - 250}px;
-                width: 250px;
-                background: white;
-                border: 1px solid var(--color-gray-200);
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                z-index: 10000;
-                padding: 8px 0;
-                font-size: 13px;
-                color: var(--color-gray-800);
-            `;
-
-            let rid = 'Desconhecido';
-            if (window.rgResearchIdentity) {
-                rid = window.rgResearchIdentity.getIdentity().id || rid;
-            }
-
-            const html = `
-                <!-- Perfil -->
-                <div style="padding: 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">👤 O Meu Perfil</div>
-                <div style="padding: 4px 16px 12px 16px;">
-                    <div style="font-weight: 500;">RID: <span style="font-family: monospace; color: var(--color-primary);">${rid}</span></div>
-                    <div style="color: var(--color-gray-600); font-size: 12px;">Universidade Licungo</div>
-                </div>
+                const rect = btn.getBoundingClientRect();
+                const menu = document.createElement('div');
+                menu.id = 'rg-global-menu';
+                menu.setAttribute('data-trigger', btn.id);
                 
-                <div style="height: 1px; background: var(--color-gray-200); margin: 4px 0;"></div>
-                
-                <!-- Dados -->
-                <div style="padding: 8px 16px 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">📂 Dados</div>
-                <div class="menu-item" data-action="backup-export" style="padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                    ${window.SVGIcons?.download || '↓'} Exportar Backup
-                </div>
-                <div class="menu-item" data-action="backup-import" style="padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-                    ${window.SVGIcons?.upload || '↑'} Importar Backup
-                </div>
+                // Keep it on screen
+                let leftPos = rect.right + window.scrollX - 250;
+                if (leftPos < 10) leftPos = 10;
 
-                <div style="height: 1px; background: var(--color-gray-200); margin: 4px 0;"></div>
-                
-                <!-- Outros -->
-                <div class="menu-item" data-action="preferences" style="padding: 8px 16px; cursor: default; display: flex; align-items: center; gap: 8px; color: var(--color-gray-400);">
-                    ⚙ Preferências (Em breve)
-                </div>
-                <div class="menu-item" data-action="about" style="padding: 8px 16px; cursor: default; display: flex; align-items: center; gap: 8px; color: var(--color-gray-400);">
-                    ℹ Sobre
-                </div>
-            `;
-            menu.innerHTML = html;
-            document.body.appendChild(menu);
+                menu.style.cssText = `
+                    position: absolute;
+                    top: ${rect.bottom + window.scrollY + 8}px;
+                    left: ${leftPos}px;
+                    width: 250px;
+                    background: white;
+                    border: 1px solid var(--color-gray-200);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    z-index: 10000;
+                    padding: 8px 0;
+                    font-size: 13px;
+                    color: var(--color-gray-800);
+                `;
 
-            const items = menu.querySelectorAll('.menu-item');
-            items.forEach(item => {
-                if (!item.getAttribute('data-action').includes('preferences') && !item.getAttribute('data-action').includes('about')) {
+                let rid = 'Desconhecido';
+                if (window.rgResearchIdentity) {
+                    rid = window.rgResearchIdentity.getIdentity().id || rid;
+                }
+
+                const html = `
+                    <!-- Perfil -->
+                    <div style="padding: 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">👤 O Meu Perfil</div>
+                    <div style="padding: 4px 16px 12px 16px;">
+                        <div style="font-weight: 500;">RID: <span style="font-family: monospace; color: var(--color-primary);">${rid}</span></div>
+                        <div style="color: var(--color-gray-600); font-size: 12px;">Universidade Licungo</div>
+                    </div>
+                    
+                    <div style="height: 1px; background: var(--color-gray-200); margin: 4px 0;"></div>
+                    
+                    <!-- Dados -->
+                    <div style="padding: 8px 16px 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">📂 Dados</div>
+                    <div class="menu-item" data-action="backup-export" style="padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                        ${window.SVGIcons?.download || '↓'} Exportar Backup
+                    </div>
+                    <div class="menu-item" data-action="backup-import" style="padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                        ${window.SVGIcons?.upload || '↑'} Importar Backup
+                    </div>
+
+                    <div style="height: 1px; background: var(--color-gray-200); margin: 4px 0;"></div>
+                    
+                    <!-- Aplicação -->
+                    <div style="padding: 8px 16px 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">⚙️ Aplicação</div>
+                    <div class="menu-item" data-action="preferences" style="padding: 8px 16px; cursor: default; display: flex; align-items: center; gap: 8px; color: var(--color-gray-400);">
+                        ${window.SVGIcons?.settings || '⚙'} Preferências
+                    </div>
+                    <div class="menu-item" data-action="about" style="padding: 8px 16px; cursor: default; display: flex; align-items: center; gap: 8px; color: var(--color-gray-400);">
+                        ${window.SVGIcons?.info || 'i'} Sobre
+                    </div>
+                `;
+                menu.innerHTML = html;
+                document.body.appendChild(menu);
+
+                const items = menu.querySelectorAll('.menu-item');
+                items.forEach(item => {
+                    if (item.getAttribute('data-action') === 'preferences' || item.getAttribute('data-action') === 'about') return;
+                    
                     item.addEventListener('mouseenter', () => item.style.background = 'var(--color-gray-100)');
                     item.addEventListener('mouseleave', () => item.style.background = 'transparent');
-                }
-            });
-
             // Handlers
             menu.querySelector('[data-action="backup-export"]').addEventListener('click', () => {
                 menu.remove();
