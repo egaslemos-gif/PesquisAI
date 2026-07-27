@@ -14,14 +14,16 @@ class AIResourceHub {
     
     _loadAssets() {
         this.resources = [];
-        let activeWfId = Object.keys(window.WORKFLOWS || {})[0];
-        if (window.rgWorkspace) {
-            activeWfId = window.rgWorkspace.getData().workflowId || activeWfId;
-        }
-        
-        // Map current workflow steps to independent resources
-        if (window.WORKFLOWS && window.WORKFLOWS[activeWfId]) {
-            const steps = window.WORKFLOWS[activeWfId].steps;
+        if (!window.WORKFLOWS) return;
+
+        Object.keys(window.WORKFLOWS).forEach(wfId => {
+            const wf = window.WORKFLOWS[wfId];
+            const steps = wf.steps || [];
+            const role = wf.role || (wfId === 'WF-INV' ? 'investigator' : (wfId === 'WF-SUP' ? 'supervisor' : 'other'));
+            
+            // Map role to profile string used in tabs
+            let profileStr = 'Investigador';
+            if (role === 'supervisor') profileStr = 'Supervisor';
 
             steps.forEach(step => {
                 const primaryPromptId = step.prompts && step.prompts[0];
@@ -29,8 +31,6 @@ class AIResourceHub {
                 
                 const tools = (step.tools || []).map(tId => window.TOOLS ? window.TOOLS[tId] : { name: tId }).filter(Boolean);
 
-                
-                // Build knowledge snippet
                 let knowledge = [];
                 const kn = step.knowledgeId && window.KNOWLEDGE ? window.KNOWLEDGE[step.knowledgeId] : null;
                 if (kn) {
@@ -43,15 +43,16 @@ class AIResourceHub {
                     title: step.name,
                     category: promptData ? promptData.competency : 'Geral',
                     objective: promptData ? promptData.objective : step.description,
-                    whenToUse: 'Antes de validar a coerência ou iniciar esta etapa da investigação.', // Extracted conceptually
+                    whenToUse: 'Consulte antes de iniciar ou validar esta etapa.',
                     knowledge: knowledge,
                     tools: tools,
                     prompt: promptData,
                     example: promptData ? promptData.example : null,
-                    checklist: step.checklistId && window.CHECKLISTS && window.CHECKLISTS[step.checklistId] ? window.CHECKLISTS[step.checklistId].map(c => c.label) : []
+                    checklist: step.checklistId && window.CHECKLISTS && window.CHECKLISTS[step.checklistId] ? window.CHECKLISTS[step.checklistId].map(c => c.label) : [],
+                    profile: profileStr
                 });
             });
-        }
+        });
     }
 
     _buildUI() {
@@ -196,6 +197,7 @@ class AIResourceHub {
     }
 
     open() {
+        this._loadAssets(); // Carregar dinamicamente com o estado e workflow atual
         this.overlay.classList.remove('hidden');
         // Force reflow
         void this.overlay.offsetWidth;
@@ -214,33 +216,26 @@ class AIResourceHub {
 
     render(searchQuery = '') {
         this.contentContainer.innerHTML = '';
-        
-        if (this.activeProfile !== 'Investigador') {
-            this.contentContainer.innerHTML = `
-                <div style="text-align: center; padding: 4rem 2rem; color: var(--color-gray-500);">
-                    <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">🚧</div>
-                    <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-gray-900); margin-bottom: 0.5rem;">Perfil em Desenvolvimento</h3>
-                    <p>Os recursos para o perfil "${this.activeProfile}" estão a ser preparados para a próxima versão.</p>
-                </div>
-            `;
-            return;
-        }
-
         const query = searchQuery.toLowerCase();
-        const filtered = this.resources.filter(r => 
-            (r.title && r.title.toLowerCase().includes(query)) ||
-            (r.category && r.category.toLowerCase().includes(query)) ||
-            (r.objective && r.objective.toLowerCase().includes(query))
-        );
+        const filtered = this.resources.filter(r => {
+            if (r.profile !== this.activeProfile) return false;
+            
+            return (r.title && r.title.toLowerCase().includes(query)) ||
+                   (r.category && r.category.toLowerCase().includes(query)) ||
+                   (r.objective && r.objective.toLowerCase().includes(query));
+        });
 
         if (filtered.length === 0) {
             this.contentContainer.innerHTML = `
                 <div style="text-align: center; padding: 4rem 2rem; color: var(--color-gray-500);">
-                    <p>Nenhum recurso encontrado para "${searchQuery}".</p>
+                    ${this.activeProfile === 'Docente' ? '<div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">🚧</div><h3 style="font-size: 1.25rem; font-weight: 600; color: var(--color-gray-900); margin-bottom: 0.5rem;">Perfil em Desenvolvimento</h3>' : ''}
+                    <p>Nenhum recurso encontrado para a pesquisa ou perfil selecionado.</p>
                 </div>
             `;
             return;
         }
+
+
 
         const frag = document.createDocumentFragment();
         filtered.forEach(data => {
