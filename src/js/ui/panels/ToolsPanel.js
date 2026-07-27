@@ -55,6 +55,10 @@ class ToolsPanel {
                 finalUrl += `?q=${encodeURIComponent(generatedPromptText)}`;
             }
 
+            // ChatGPT supports ?q=, others might not or might fail with large URLs
+            const isChatGPT = finalUrl.includes('chatgpt.com');
+            const targetUrl = isChatGPT ? finalUrl : tool.url;
+
             html += `
                 <div style="border: 1px solid var(--color-gray-200); border-radius: var(--radius-md); padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; background: var(--color-white); box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
@@ -62,7 +66,7 @@ class ToolsPanel {
                             <div style="font-weight: 700; color: var(--color-gray-900); font-size: 1.1rem;">${tool.name}</div>
                             <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-gray-500); margin-top: 0.1rem;">${tool.type}</div>
                         </div>
-                        <button class="btn-open-tool" data-url="${finalUrl}" data-raw-url="${tool.url}" style="font-size: 0.8rem; color: var(--color-white); background: var(--color-primary-600); border: none; padding: 0.4rem 0.75rem; border-radius: 4px; cursor: pointer; font-weight: 600; white-space: nowrap; transition: background 0.2s;">Abrir ↗</button>
+                        <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="btn-open-tool" style="font-size: 0.8rem; color: var(--color-white); background: var(--color-primary-600); border: none; padding: 0.4rem 0.75rem; border-radius: 4px; cursor: pointer; font-weight: 600; white-space: nowrap; transition: background 0.2s; text-decoration: none;">Abrir ↗</a>
                     </div>
                     
                     <div style="font-size: 0.9rem; color: var(--color-gray-700); line-height: 1.4; border-left: 3px solid var(--color-primary-300); padding-left: 0.75rem;">
@@ -124,15 +128,10 @@ class ToolsPanel {
 
         const buttons = panel.querySelectorAll('.btn-open-tool');
         buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const url = btn.getAttribute('data-url');
-                const rawUrl = btn.getAttribute('data-raw-url');
-                
+            btn.addEventListener('click', (e) => {
+                // Remove window.open since it is an 'a' tag now, just copy to clipboard
                 if (generatedPromptText && window.rgClipboard) {
-                    window.rgClipboard.copyText(generatedPromptText);
-                    window.open(url, '_blank');
-                } else {
-                    window.open(url, '_blank');
+                    window.rgClipboard.copyText(generatedPromptText, btn);
                 }
             });
         });
