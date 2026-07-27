@@ -341,8 +341,8 @@ window.WORKFLOW_STEPS['WF-INV'] = [
     },
     {
         "id": "STEP-INV-09",
-        "name": "Redação da Revisão",
-        "description": "Redação formal da revisão de literatura, comparando autores e identificando lacunas.",
+        "name": "Síntese Crítica da Literatura",
+        "description": "Síntese formal e crítica da literatura, comparando autores, identificando tensões e expondo lacunas.",
         "artifactExpected": "Revisão da literatura estruturada",
         "tools": [
             "tool-claude",
@@ -360,8 +360,8 @@ window.WORKFLOW_STEPS['WF-INV'] = [
             "tools": true
         },
         "artifactCapture": {
-            "title": "Registar Revisão (Síntese)",
-            "expected": "O texto final da revisão da literatura com identificação de lacunas.",
+            "title": "Registar Síntese Crítica",
+            "expected": "O texto final da síntese da literatura com identificação de lacunas e tensões.",
             "copyOnly": "Copie apenas o texto redigido (Eixos, Síntese e Lacuna).",
             "format": "Texto estruturado em parágrafos e secções.",
             "example": "2.1 Adoção de IA no Ensino\nVários estudos demonstram que... (Silva, 2024; Costa, 2023). Contudo, a lacuna reside na...",

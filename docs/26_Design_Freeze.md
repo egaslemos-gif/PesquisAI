@@ -26,7 +26,7 @@ A partir deste momento, qualquer alteração ao que está definido abaixo deixa 
 
 | ID | Workflow | Etapas | Estado |
 | :--- | :--- | :--- | :--- |
-| `WF-INV` | Investigador | 10 | Congelado |
+| `WF-INV` | Investigador | 9 | Congelado |
 | `WF-ORI` | Orientador | 8 | Congelado |
 
 Nenhum workflow adicional na v1.0.
@@ -35,7 +35,7 @@ Nenhum workflow adicional na v1.0.
 
 ### ✅ Etapas
 
-**Investigador:** 10 etapas (`STEP-INV-01` a `STEP-INV-10`)  
+**Investigador:** 9 etapas (`STEP-INV-01` a `STEP-INV-09`)  
 **Orientador:** 8 etapas (`STEP-ORI-01` a `STEP-ORI-08`)
 
 Cada etapa com: descrição, objetivo, ferramentas, prompts, artefacto, checklist e erros comuns.  

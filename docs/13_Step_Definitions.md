@@ -1,4 +1,4 @@
-﻿# 13 — Step Definitions
+# 13 — Step Definitions
 
 Definição exaustiva de cada etapa. Cada passo é completamente independente e auto-contido: qualquer programador consegue implementá-lo sem consultar outros documentos.
 
@@ -197,26 +197,7 @@ Todas as etapas seguem exatamente esta estrutura:
 | **Critérios de qualidade** | Estrutura académica respeitada. Coerência entre secções. Linguagem formal e clara. Referências integradas no texto. |
 | **Erros comuns** | Secções desconectadas entre si. Introdução que não apresenta o problema. Metodologia vaga. Resultados sem análise. |
 | **Checklist** | ☐ Todas as secções redigidas? ☐ Coerência entre secções? ☐ Referências integradas? ☐ O artefacto foi guardado? |
-| **Próxima etapa** | `STEP-INV-10` — Revisão Final |
-
----
-
-### STEP-INV-10 — Revisão Final
-
-| Campo | Conteúdo |
-| :--- | :--- |
-| **ID** | `STEP-INV-10` |
-| **Nome** | Revisão Final |
-| **Descrição** | O investigador revê todo o trabalho verificando consistência, formatação, citações e normas. |
-| **Objetivo** | Produzir uma versão final pronta para entrega ou submissão. |
-| **Pré-requisitos** | `STEP-INV-09` concluído. `ART-09` disponível. |
-| **Ferramentas** | Claude (revisão de estilo); Grammarly/LanguageTool (correção); Zotero (verificação de referências) |
-| **Prompts** | `PT-R-011` — Revisão Académica Final |
-| **Artefacto esperado** | `ART-10` — Documento Final Revisto (versão completa, revista e formatada). |
-| **Critérios de qualidade** | Sem erros ortográficos ou gramaticais. Formatação conforme normas (APA, ABNT, etc.). Todas as referências citadas no texto estão na bibliografia. Coerência global do documento. |
-| **Erros comuns** | Referências citadas no texto mas ausentes da bibliografia. Formatação inconsistente. Conclusões que não respondem à pergunta. |
-| **Checklist** | ☐ Sem erros ortográficos? ☐ Formatação conforme normas? ☐ Referências completas e consistentes? ☐ Conclusões respondem à pergunta? ☐ O artefacto foi guardado? |
-| **Próxima etapa** | *(Fim do workflow)* |
+| **Próxima etapa** | *(Fim do workflow: A redação de outros capítulos decorrerá no módulo WF-RED)* |
 
 ---
 ---
