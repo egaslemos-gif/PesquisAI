@@ -42,31 +42,31 @@ class ProtocolOverview {
             // No truncation applied to theme, let it wrap
 
             if (area || tema) {
-                themeData = `
-                <div class="theme-data-container" style="display: flex; flex-direction: column; gap: 4px; margin-left: auto; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; max-width: 50%;">
-                    ${area ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500;">${area}</div>` : ''}
-                    ${tema ? `<div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-top: 4px;">Projeto:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; word-break: break-word;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div>` : ''}
-                </div>`;
+                themeData = true;
             }
         }
 
         // The layout requested: Ultra compact ribbon
         return `
-            <div class="protocol-overview-ribbon" style="display: flex; flex-direction: column; gap: 0.5rem; padding: 1.5rem; background: var(--color-white); border-bottom: 1px solid var(--color-gray-200); margin-bottom: 1.5rem; width: 100%;">
-                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+            <div class="protocol-overview-ribbon" style="display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem 1.5rem; background: var(--color-white); border-bottom: 1px solid var(--color-gray-200); margin-bottom: 1rem; width: 100%;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 1rem; width: 100%;">
+                    <div style="display: flex; flex-direction: column; gap: 0.15rem; flex-shrink: 0;">
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-gray-600); background: var(--color-gray-100); padding: 0.15rem 0.4rem; border-radius: 4px; text-transform: uppercase;">Perfil: ${protocolData.name || 'Investigador'}</span>
+                            <span style="font-size: 0.7rem; font-weight: 700; color: var(--color-gray-600); background: var(--color-gray-100); padding: 0.1rem 0.3rem; border-radius: 4px; text-transform: uppercase;">Perfil: ${protocolData.name || 'Investigador'}</span>
                         </div>
-                        <div style="display: flex; align-items: baseline; gap: 0.75rem;">
-                            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary-600); background: var(--color-primary-50); padding: 0.2rem 0.5rem; border-radius: 4px;">Protocolo</span>
-                            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--color-gray-900); margin: 0;">${protocolData.title || protocolData.name}</h2>
+                        <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary-600); background: var(--color-primary-50); padding: 0.15rem 0.4rem; border-radius: 4px;">Protocolo</span>
+                            <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--color-gray-900); margin: 0; white-space: nowrap;">${protocolData.title || protocolData.name}</h2>
                         </div>
                     </div>
-                    ${themeData}
+                    ${themeData ? `
+                    <div class="theme-data-container" style="display: flex; align-items: center; gap: 2rem; border-left: 2px solid var(--color-gray-200); padding-left: 1rem; flex-grow: 1; min-width: 0;">
+                        ${area ? `<div style="flex-shrink: 0;"><div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Área:</div><div style="font-size: 0.85rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" title="${area}">${area}</div></div>` : ''}
+                        ${tema ? `<div style="flex-grow: 1; min-width: 0;"><div style="font-size: 0.7rem; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">Projeto:</div><div style="font-size: 0.9rem; color: var(--color-gray-800); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;" title="${tema.replace(/"/g, '&quot;')}">${tema}</div></div>` : ''}
+                    </div>` : ''}
                 </div>
-                <hr style="border: 0; border-top: 1px solid var(--color-gray-200); margin: 0.5rem 0;" />
-                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; font-size: 0.85rem; color: var(--color-gray-600);">
+                <hr style="border: 0; border-top: 1px solid var(--color-gray-200); margin: 0.25rem 0;" />
+                <div style="display: flex; flex-wrap: nowrap; align-items: center; gap: 1rem; font-size: 0.8rem; color: var(--color-gray-600);">
                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                         <span style="font-weight: 600; color: var(--color-gray-900);">Etapa ${currentStepNum}/${totalSteps}</span>
                     </div>
