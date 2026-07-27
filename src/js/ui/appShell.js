@@ -37,16 +37,20 @@ class AppShell {
         const homeBtn = document.getElementById('btn-go-home');
         const logoBtn = document.getElementById('app-logo');
         const handleGoHome = () => {
-            if (window.rgEvents && typeof window.rgEvents.handleSave === 'function') {
-                window.rgEvents.handleSave();
-            }
-            if (window.rgEventBus) {
-                if (window.rgEngine && window.rgEngine.getCurrentStep()) {
+            const hasActiveProject = window.rgWorkspace && window.rgWorkspace.getData().id;
+            
+            if (hasActiveProject) {
+                if (window.rgEvents && typeof window.rgEvents.handleSave === 'function') {
+                    window.rgEvents.handleSave();
+                }
+                if (window.rgEventBus) {
                     window.rgEventBus.emit('toast:show', { message: '✓ Projeto guardado. A regressar ao Dashboard...', type: 'success' });
                 }
                 setTimeout(() => {
                     if (window.rgWorkspace) window.rgWorkspace.closeWorkspace();
                 }, 500);
+            } else {
+                if (window.rgWorkspace) window.rgWorkspace.closeWorkspace();
             }
         };
 
