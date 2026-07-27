@@ -89,7 +89,7 @@ class ProgressView {
             }
 
             const circleStyles = stateClass === 'active' 
-                ? 'background: var(--color-primary-600); color: white; border: 2px solid var(--color-primary-600);' 
+                ? 'background: var(--color-primary-600); color: white; border: 2px solid var(--color-primary-600); box-shadow: 0 0 0 4px var(--color-primary-100);' 
                 : stateClass === 'completed' 
                     ? 'background: #e0f6f4; color: #1bb0a1; border: 2px solid #1bb0a1;' 
                     : 'background: white; color: var(--color-gray-400); border: 2px solid var(--color-gray-300);';
@@ -115,9 +115,9 @@ class ProgressView {
         });
 
         // O ProtocolOverview já mostra o progresso percentual e resultado esperado,
-        // pelo que esta secção fica dedicada apenas à timeline semântica.
+        // pelo que esta secção fica dedicada apenas à timeline semântica com o estilo de cartão branco do mockup.
         container.innerHTML = `
-            <div class="semantic-timeline-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 1rem; width: 100%; border-bottom: 1px solid var(--color-gray-200); margin-bottom: 2rem;">
+            <div class="semantic-timeline-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; padding: 24px 16px; background: white; border: 1px solid var(--color-gray-200); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); width: 100%; margin-bottom: 2rem;">
                 ${stepsHtml}
             </div>
         `;
