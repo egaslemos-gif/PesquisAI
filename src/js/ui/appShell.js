@@ -278,10 +278,37 @@ class AppShell {
     }
 
     render(view) {
+        this._updateWorkflowBadge();
         if (view === 'EMPTY') {
             this.renderEmptyState();
         } else if (view === 'MAIN') {
             this.renderMainWorkspace();
+        }
+    }
+
+    _updateWorkflowBadge() {
+        const badge = document.getElementById('workflow-badge');
+        if (!badge || !window.WORKFLOWS) return;
+        
+        let protocolId = null;
+        if (window.rgWorkspace && window.rgWorkspace.getData().id) {
+            protocolId = window.rgWorkspace.getData().workflowId;
+        } else if (window.rgResearchIdentity) {
+            protocolId = window.rgResearchIdentity.getData().preferredProtocol;
+        }
+        
+        if (protocolId && window.WORKFLOWS[protocolId]) {
+            const protocol = window.WORKFLOWS[protocolId];
+            badge.title = protocol.title;
+            const textSpan = badge.querySelector('.btn-text');
+            if (textSpan) textSpan.innerText = protocol.title;
+            
+            const iconSlot = badge.querySelector('.icon-slot');
+            if (iconSlot) {
+                // Change icon based on role if needed
+                iconSlot.dataset.icon = protocol.role === 'supervisor' ? 'users' : 'user';
+                if (window.lucide) window.lucide.createIcons({ attrs: { class: 'lucide' } });
+            }
         }
     }
 
@@ -553,7 +580,7 @@ class AppShell {
         this._showWizardModal(workflowId);
     }
 
-    _showWizardModal(defaultWorkflowId = (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV')) {
+    _showWizardModal(defaultWorkflowId = (Object.keys(window.WORKFLOWS || {})[0] || 'default')) {
         const modalOverlay = document.createElement('div');
         modalOverlay.className = 'modal-overlay';
         modalOverlay.style.cssText = `
@@ -630,11 +657,18 @@ class AppShell {
                 <hr style="border: 0; border-top: 1px solid var(--color-gray-200); margin: var(--space-2) 0;">
 
                 <div class="form-group" style="display: flex; flex-direction: column; gap: var(--space-2);">
-                    <label style="font-weight: 600; font-size: var(--text-sm); color: var(--color-gray-800);">Metodologia</label>
-                    <div style="display: flex; align-items: center; gap: 8px; padding: var(--space-3); border: 1px solid var(--color-gray-200); border-radius: 8px; background: var(--color-gray-50); color: var(--color-gray-700); font-size: var(--text-sm);">
-                        <span style="color: var(--color-success); font-weight: bold;">✓</span> ${defaultWorkflowId === 'WF-SUP' ? 'Supervisão Académica com IA' : 'Revisão da Literatura'}
+                    <label style="font-weight: 600; font-size: var(--text-sm); color: var(--color-gray-800);">Qual é o protocolo de investigação?</label>
+                    <div style="display: flex; flex-direction: column; gap: 8px;" id="protocol-radio-group">
+                        ${Object.keys(window.WORKFLOWS || {}).map((wfId) => `
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; color: var(--color-gray-700); padding: var(--space-3); border: 1px solid var(--color-gray-200); border-radius: 8px; background: var(--color-gray-50);">
+                                <input type="radio" name="wizard-protocol-radio" value="${wfId}" ${wfId === defaultWorkflowId ? 'checked' : ''}> 
+                                <div>
+                                    <div style="font-weight: 600; color: var(--color-gray-900);">${window.WORKFLOWS[wfId].title || wfId}</div>
+                                    <div style="font-size: 12px; color: var(--color-gray-500);">${window.WORKFLOWS[wfId].description || ''}</div>
+                                </div>
+                            </label>
+                        `).join('')}
                     </div>
-                    <p style="font-size: 11px; color: var(--color-gray-500); margin-top: 4px;">Protocolo selecionado.</p>
                 </div>
             </div>
 
@@ -785,7 +819,10 @@ class AppShell {
             const title = inputTitle.value.trim();
             const selectedRadio = Array.from(radios).find(r => r.checked)?.value;
             const area = selectedRadio === 'Outra' ? inputOtherArea.value.trim() : selectedRadio;
-            const protocol = defaultWorkflowId;
+            
+            const protocolRadios = modal.querySelectorAll('input[name="wizard-protocol-radio"]');
+            const selectedProtocolRadio = Array.from(protocolRadios).find(r => r.checked)?.value;
+            const protocol = selectedProtocolRadio || defaultWorkflowId;
 
             if (title.length > 0 && area.length > 0) {
                 formContent.style.display = 'none';

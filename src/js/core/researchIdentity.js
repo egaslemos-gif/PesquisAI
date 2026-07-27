@@ -79,7 +79,8 @@ class ResearchIdentity {
             firstVisit: new Date().toISOString(),
             lastVisit: new Date().toISOString(),
             totalSessions: 0,
-            preferredProtocol: 'WF-INV',
+            preferredProtocol: Object.keys(window.WORKFLOWS || {})[0] || 'default',
+            roles: ['investigator', 'supervisor'], // Demo mode RC1.2
             preferredAIs: [],
             totalArtifacts: 0,
             completedProtocols: 0
@@ -210,7 +211,7 @@ class ResearchIdentity {
                 id: wId,
                 title: workspaceData.title || 'Investigação Sem Título',
                 area: workspaceData.area || 'Área não definida',
-                protocolId: workspaceData.workflowId || 'WF-INV',
+                protocolId: workspaceData.workflowId || Object.keys(window.WORKFLOWS || {})[0] || 'default',
                 status: workspaceData.status || 'ACTIVE',
                 currentStep: workspaceData.currentStepId,
                 createdAt: workspaceData.createdAt || new Date().toISOString(),

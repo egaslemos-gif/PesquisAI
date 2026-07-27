@@ -170,7 +170,7 @@ class ProjectExplorer {
         reviewBadge = `<span class="badge ${statusClass}">● ${statusText}</span>`;
         const favoriteIcon = ws.favorite ? '★' : '☆';
         const favoriteClass = ws.favorite ? 'favorite-active' : '';
-        const protocolName = ws.protocolId === 'WF-INV' ? 'Revisão da Literatura' : ws.protocolId;
+        const protocolName = window.WORKFLOWS && window.WORKFLOWS[ws.protocolId] ? window.WORKFLOWS[ws.protocolId].title : ws.protocolId;
         
         const isSelected = this.state.selectedIds.has(ws.id);
         const selectedClass = isSelected ? 'selected-card' : '';

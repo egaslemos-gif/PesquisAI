@@ -11,9 +11,10 @@ class ProgressView {
 
     render(currentStepId) {
         const container = document.getElementById('progress-container');
-        if (!container || !window.WORKFLOWS || !window.WORKFLOWS['WF-INV']) return;
+        const workflowId = window.rgWorkspace ? window.rgWorkspace.workflowId : null;
+        if (!container || !window.WORKFLOWS || !workflowId || !window.WORKFLOWS[workflowId]) return;
 
-        const steps = window.WORKFLOWS['WF-INV'].steps;
+        const steps = window.WORKFLOWS[workflowId].steps;
         const currentIndex = steps.findIndex(s => s.id === currentStepId);
         if (currentIndex === -1) return;
         

@@ -8,8 +8,8 @@ class Workspace {
         // Estado por defeito
         this.data = {
             id: null,
-            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
-            currentStepId: 'STEP-INV-01',
+            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'default'),
+            currentStepId: window.WORKFLOWS && window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]] ? window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]].steps[0].id : 'STEP-INV-01',
             area: '',
             artifacts: {
                 // Mapeamento: stepId -> conteúdo do artefacto
@@ -369,11 +369,11 @@ class Workspace {
             id: 'proj_' + Date.now(),
             title: metadata.title || 'Investigação Sem Título',
             area: metadata.area || 'Área não definida',
-            workflowId: metadata.workflowId || (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
+            workflowId: metadata.workflowId || (Object.keys(window.WORKFLOWS || {})[0] || 'default'),
             status: 'ACTIVE',
             createdAt: now,
             updatedAt: now,
-            currentStepId: 'STEP-INV-01',
+            currentStepId: window.WORKFLOWS && window.WORKFLOWS[metadata.workflowId || (Object.keys(window.WORKFLOWS || {})[0] || 'default')] ? window.WORKFLOWS[metadata.workflowId || (Object.keys(window.WORKFLOWS || {})[0] || 'default')].steps[0].id : 'STEP-INV-01',
             artifacts: {},
             checklists: {},
             preferences: {},
@@ -394,8 +394,8 @@ class Workspace {
     resetWorkspace(actionType = 'WORKSPACE_RESET') {
         this.data = {
             id: 'proj_' + Date.now(),
-            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
-            currentStepId: 'STEP-INV-01',
+            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'default'),
+            currentStepId: window.WORKFLOWS && window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]] ? window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]].steps[0].id : 'STEP-INV-01',
             title: '',
             area: '',
             status: 'ACTIVE',
@@ -416,8 +416,8 @@ class Workspace {
     closeWorkspace() {
         this.data = {
             id: null,
-            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'WF-INV'),
-            currentStepId: 'STEP-INV-01',
+            workflowId: (Object.keys(window.WORKFLOWS || {})[0] || 'default'),
+            currentStepId: window.WORKFLOWS && window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]] ? window.WORKFLOWS[Object.keys(window.WORKFLOWS)[0]].steps[0].id : 'STEP-INV-01',
             title: '',
             area: '',
             status: 'draft',
