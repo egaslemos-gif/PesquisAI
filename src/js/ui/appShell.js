@@ -67,6 +67,214 @@ class AppShell {
                 this._showWizardModal();
             });
         }
+
+        this._initGlobalMenu();
+    }
+
+    _initGlobalMenu() {
+        const btn = document.getElementById('btn-global-menu');
+        const fileInput = document.getElementById('backup-file-input');
+        
+        if (!btn) return;
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const existing = document.getElementById('rg-global-menu');
+            if (existing) {
+                existing.remove();
+                return;
+            }
+
+            const rect = btn.getBoundingClientRect();
+            const menu = document.createElement('div');
+            menu.id = 'rg-global-menu';
+            menu.style.cssText = `
+                position: absolute;
+                top: ${rect.bottom + window.scrollY + 8}px;
+                left: ${rect.right + window.scrollX - 250}px;
+                width: 250px;
+                background: white;
+                border: 1px solid var(--color-gray-200);
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                z-index: 10000;
+                padding: 8px 0;
+                font-size: 13px;
+                color: var(--color-gray-800);
+            `;
+
+            let rid = 'Desconhecido';
+            if (window.rgResearchIdentity) {
+                rid = window.rgResearchIdentity.getIdentity().id || rid;
+            }
+
+            const html = `
+                <!-- Perfil -->
+                <div style="padding: 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">👤 O Meu Perfil</div>
+                <div style="padding: 4px 16px 12px 16px;">
+                    <div style="font-weight: 500;">RID: <span style="font-family: monospace; color: var(--color-primary);">${rid}</span></div>
+                    <div style="color: var(--color-gray-600); font-size: 12px;">Universidade Licungo</div>
+                </div>
+                
+                <div style="height: 1px; background: var(--color-gray-200); margin: 4px 0;"></div>
+                
+                <!-- Dados -->
+                <div style="padding: 8px 16px 4px 16px; font-size: 11px; text-transform: uppercase; color: var(--color-gray-500); font-weight: bold;">📂 Dados</div>
+                <div class="menu-item" data-action="backup-export" style="padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    ${window.SVGIcons?.download || '↓'} Exportar Backup
+                </div>
+                <div class="menu-item" data-action="backup-import" style="padding: 8px 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    ${window.SVGIcons?.upload || '↑'} Importar Backup
+                </div>
+
+                <div style="height: 1px; background: var(--color-gray-200); margin: 4px 0;"></div>
+                
+                <!-- Outros -->
+                <div class="menu-item" data-action="preferences" style="padding: 8px 16px; cursor: default; display: flex; align-items: center; gap: 8px; color: var(--color-gray-400);">
+                    ⚙ Preferências (Em breve)
+                </div>
+                <div class="menu-item" data-action="about" style="padding: 8px 16px; cursor: default; display: flex; align-items: center; gap: 8px; color: var(--color-gray-400);">
+                    ℹ Sobre
+                </div>
+            `;
+            menu.innerHTML = html;
+            document.body.appendChild(menu);
+
+            const items = menu.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (!item.getAttribute('data-action').includes('preferences') && !item.getAttribute('data-action').includes('about')) {
+                    item.addEventListener('mouseenter', () => item.style.background = 'var(--color-gray-100)');
+                    item.addEventListener('mouseleave', () => item.style.background = 'transparent');
+                }
+            });
+
+            // Handlers
+            menu.querySelector('[data-action="backup-export"]').addEventListener('click', () => {
+                menu.remove();
+                if (window.rgBackup) {
+                    window.rgBackup.export();
+                    if (window.rgEventBus) {
+                        window.rgEventBus.emit('toast:show', { message: 'Backup gerado com sucesso.', type: 'success' });
+                    }
+                }
+            });
+
+            menu.querySelector('[data-action="backup-import"]').addEventListener('click', () => {
+                menu.remove();
+                if (fileInput) {
+                    fileInput.click();
+                }
+            });
+
+            const closeMenu = (e) => {
+                if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+                    menu.remove();
+                    document.removeEventListener('click', closeMenu);
+                }
+            };
+            document.addEventListener('click', closeMenu);
+        });
+
+        if (fileInput) {
+            fileInput.addEventListener('change', async (e) => {
+                if (e.target.files.length === 0) return;
+                const file = e.target.files[0];
+                e.target.value = ''; // reset
+
+                try {
+                    const analysis = await window.rgBackup.analyzeFile(file);
+                    this._showImportModal(analysis);
+                } catch (error) {
+                    if (window.rgEventBus) {
+                        window.rgEventBus.emit('toast:show', { message: error.message, type: 'error' });
+                    } else {
+                        alert(error.message);
+                    }
+                }
+            });
+        }
+    }
+
+    _showImportModal(analysis) {
+        // Modal de confirmação da importação
+        const existing = document.getElementById('rg-import-modal');
+        if (existing) existing.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'rg-import-modal';
+        modal.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.4); z-index: 100000;
+            display: flex; align-items: center; justify-content: center;
+        `;
+
+        const dateFormatted = new Date(analysis.createdAt).toLocaleDateString('pt-PT', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' });
+
+        modal.innerHTML = `
+            <div style="background: white; border-radius: 12px; width: 450px; max-width: 90%; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                <h3 style="margin: 0 0 16px 0; font-size: 18px;">Restaurar Backup</h3>
+                <div style="background: var(--color-gray-50); border: 1px solid var(--color-gray-200); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="margin: 0 0 12px 0; font-size: 14px; color: var(--color-gray-700);">O ficheiro contém:</p>
+                    <ul style="margin: 0 0 12px 0; padding-left: 20px; font-size: 14px; color: var(--color-gray-800);">
+                        <li>✔ <strong>${analysis.stats.workspaces}</strong> Projetos/Investigações</li>
+                        <li>✔ <strong>${analysis.stats.hasIdentity ? '1' : '0'}</strong> Perfil de Investigador</li>
+                        <li>✔ Backup criado em <strong>${dateFormatted}</strong></li>
+                    </ul>
+                    <p style="margin: 0; font-size: 12px; color: var(--color-gray-500);">Versão: ${analysis.version}</p>
+                </div>
+
+                <p style="font-size: 14px; color: var(--color-gray-700); margin-bottom: 16px;">
+                    <strong>O que pretende fazer?</strong>
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                    <label style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 1px solid var(--color-primary); border-radius: 8px; background: #eff6ff; cursor: pointer;">
+                        <input type="radio" name="import-strategy" value="replace" checked style="margin-top: 2px;">
+                        <div>
+                            <div style="font-weight: 500; font-size: 14px; color: var(--color-primary-dark);">Restaurar completamente</div>
+                            <div style="font-size: 12px; color: var(--color-gray-600); margin-top: 4px;">Apaga os dados atuais deste dispositivo e substitui-os pelo conteúdo do backup.</div>
+                        </div>
+                    </label>
+                    <label style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 1px solid var(--color-gray-200); border-radius: 8px; background: white; opacity: 0.5; cursor: not-allowed;">
+                        <input type="radio" name="import-strategy" value="merge" disabled style="margin-top: 2px;">
+                        <div>
+                            <div style="font-weight: 500; font-size: 14px; color: var(--color-gray-800);">Substituir apenas projetos correspondentes</div>
+                            <div style="font-size: 12px; color: var(--color-gray-500); margin-top: 4px;">(Brevemente) Fusão inteligente sem apagar outros projetos locais.</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                    <button class="btn btn-ghost" id="btn-import-cancel">Cancelar</button>
+                    <button class="btn btn-primary" id="btn-import-confirm">Importar e Reiniciar</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        modal.querySelector('#btn-import-cancel').addEventListener('click', () => {
+            modal.remove();
+        });
+
+        modal.querySelector('#btn-import-confirm').addEventListener('click', () => {
+            const success = window.rgBackup.commitImport(analysis.rawData);
+            if (success) {
+                modal.innerHTML = \`
+                    <div style="background: white; border-radius: 12px; width: 400px; max-width: 90%; padding: 32px 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
+                        <h3 style="margin: 0 0 16px 0; font-size: 18px;">Importação Concluída</h3>
+                        <p style="font-size: 14px; color: var(--color-gray-600); margin-bottom: 24px;">Os seus dados foram restaurados com sucesso.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="window.location.reload();">Reiniciar Aplicação</button>
+                    </div>
+                \`;
+            } else {
+                if (window.rgEventBus) {
+                    window.rgEventBus.emit('toast:show', { message: 'Falha ao importar backup.', type: 'error' });
+                }
+                modal.remove();
+            }
+        });
     }
 
     render(view) {

@@ -75,13 +75,6 @@
 
                 <!-- Zona 3: Utilizador (Right) -->
                 <div class="header-zone zone-user" id="header-zone-user">
-                    <div class="header-rid-badge" title="Research Identity" style="cursor: pointer;">
-                        <span class="icon-slot hidden-desktop" data-icon="hash"></span>
-                        <span class="btn-text">
-                            <span class="rid-label">RID</span>
-                            <span class="rid-value" id="rid-display-value">#•••</span>
-                        </span>
-                    </div>
 
                     <div class="user-badge" id="workflow-badge" title="Revisão da Literatura">
                         <span class="icon-slot" data-icon="user"></span> <span class="btn-text">Revisão da Literatura</span>
@@ -91,10 +84,17 @@
                         <span class="icon-slot" data-icon="plus"></span>
                         <span class="btn-text">Novo Projeto</span>
                     </button>
+
+                    <button id="btn-global-menu" class="btn btn-ghost" title="Opções" style="padding: var(--space-2); margin-left: var(--space-2);">
+                        <span class="icon-slot" data-icon="moreVertical"></span>
+                    </button>
                 </div>
                 
             </div>
         </header>
+
+        <!-- Hidden Input for Backup Import -->
+        <input type="file" id="backup-file-input" accept=".json" style="display: none;" />
 
         <!-- Main Content Area -->
         <main id="main-content" class="main-content">
@@ -115,6 +115,7 @@
     <!-- Core & Services -->
     <script src="./src/js/core/eventBus.js??v=1.0.1"></script>
     <script src="./src/js/services/storage.js??v=1.0.1"></script>
+    <script src="./src/js/services/backup.js??v=1.0.1"></script>
     <script src="./src/js/core/researchIdentity.js??v=1.0.1"></script>
     <script src="./src/js/core/researchEvents.js??v=1.0.1"></script>
     <script src="./src/js/services/toast.js??v=1.0.1"></script>
