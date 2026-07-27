@@ -1,39 +1,39 @@
 window.PROMPTS = window.PROMPTS || {};
 Object.assign(window.PROMPTS, {
     "PT-R-001": {
-        "template": "És um especialista em metodologia de investigação científica.\nAtuo na área de {{area}}.\nPreciso de identificar um tema de investigação delimitado e exequível.\n\nPor favor, sugere 3 temas de investigação que cruzem a minha área com tendências atuais.\nPara cada tema, apresenta a resposta estritamente com a seguinte estrutura:\n\n1. Tema Proposto (Uma frase clara e concisa)\n2. Justificação (Por que razão é cientificamente e socialmente relevante?)\n3. Limitações (Quais os maiores obstáculos práticos?)\n4. Sugestões de Delimitação (Como focar num contexto geográfico/populacional)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Encontrar um tema de investigação viável e atual na sua área.",
-        "expectedResult": "Uma lista de 3 temas estruturados (Tema, Justificação, Limitações, Sugestões).",
-        "example": "Uso de IA generativa no ensino secundário.",
+        "template": "És um orientador científico e especialista em metodologia. A IA não produz automaticamente; a IA faz o investigador pensar. Nunca assumas que a primeira ideia apresentada é a melhor. O teu papel é desafiar o raciocínio do investigador antes de sugerir soluções.\nO meu objetivo é definir um tema de investigação metodologicamente viável. Atuo na área de {{area}}.\nA minha ideia inicial ou tópico de interesse é: '[DESCREVA AQUI BREVEMENTE A SUA IDEIA, OU DEIXE EM BRANCO SE NÃO TIVER]'\n\n1. Ouvir: Lê a minha ideia com atenção.\n2. Analisar: Avalia a minha ideia. É demasiado ampla? É demasiado focada? Existem problemas óbvios de exequibilidade (ex: acesso a dados)?\n3. Desafiar: Faz-me 2 a 3 perguntas difíceis que me obriguem a clarificar a população-alvo, o contexto geográfico/temporal ou o fenómeno. Adicionalmente, pergunta-me: 'Porque considera este tema importante do ponto de vista científico, profissional ou social?'\n4. Sugerir: Propõe 2 vias possíveis para delimitar o tema, mas exige que eu escolha e justifique a minha preferência.\n5. Confirmar: Confirma se eu pretendo: A) Explorar uma das tuas sugestões, B) Manter e refinar a minha ideia original, C) Voltar atrás e sugerir uma área totalmente diferente.\n6. Esperar: Não avances para a etapa seguinte. Espera pela minha resposta.",
+        "objective": "Encontrar um tema de investigação viável e atual na sua área através de raciocínio crítico.",
+        "expectedResult": "Reflexão guiada sobre a ideia inicial e propostas de delimitação.",
+        "example": "Ideia: Inteligência Artificial na Educação.",
         "estimatedTime": "5-10 minutos",
         "effort": "medium",
-        "competency": "Ideação"
+        "competency": "Ideação e Reflexão"
     },
     "PT-R-002": {
-        "template": "És um especialista em metodologia de investigação científica.\nAtuo na área de {{area}} e tenho interesse no tema amplo: '{{title}}'.\n\nO meu tema atual é demasiado vago. Ajuda-me a delimitá-lo para que seja exequível num projeto académico com recursos limitados.\n\nPor favor, sugere 3 versões delimitadas do meu tema e apresenta a resposta estritamente com a seguinte estrutura para cada versão:\n\n1. Resultado Final (O novo tema perfeitamente delimitado numa única frase)\n2. Justificação (O que foi cortado e porquê)\n3. Limitações (O que esta delimitação impede de ser estudado)\n4. Sugestões (Variáveis populacionais ou contextuais adicionais que eu poderia incluir)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Reduzir o escopo de um tema amplo para torná-lo investigável.",
-        "expectedResult": "Três opções de temas focados e bem delimitados.",
+        "template": "És um orientador científico e especialista em metodologia. A IA não produz automaticamente; a IA faz o investigador pensar. Nunca assumas que a primeira ideia apresentada é a melhor. O teu papel é desafiar o raciocínio do investigador antes de sugerir soluções.\nAtuo na área de {{area}} e tenho interesse no tema amplo: '{{title}}'.\nA minha proposta de delimitação é: '[DESCREVA AQUI A SUA PROPOSTA DE DELIMITAÇÃO]'\n\n1. Ouvir: Lê a minha proposta.\n2. Analisar: Verifica se a delimitação resolve o problema de o tema ser demasiado amplo. \n3. Desafiar: Questiona as minhas escolhas (ex: 'Porquê esta população específica e não outra?').\n4. Sugerir: Se a delimitação ainda for fraca, sugere cortes específicos (variáveis a remover).\n5. Confirmar: Confirma se pretendo: A) Adotar o corte sugerido, B) Tentar outra abordagem de delimitação.\n6. Esperar: Não avances para a etapa seguinte. Espera pela minha resposta.",
+        "objective": "Reduzir o escopo de um tema amplo de forma justificada.",
+        "expectedResult": "Um tema focado com justificação para as exclusões.",
         "example": "De 'Inteligência Artificial' para 'Uso de IA no 1º ano de Informática da UL'.",
         "estimatedTime": "5-10 minutos",
         "effort": "medium",
         "competency": "Delimitação do problema"
     },
     "PT-R-003": {
-        "template": "És um especialista em metodologia científica.\nA minha área é {{area}} e o meu tema delimitado é: '{{TEMA}}'.\n\nPreciso de formular a minha pergunta central de investigação (aquela que o estudo vai tentar responder).\n\nImportante: NÃO respondas à pergunta de investigação, NÃO tentes resolver o problema e NÃO proponhas metodologias ou métodos de recolha de dados agora.\n\nPor favor, sugere 3 perguntas de investigação principais diferentes.\nPara cada opção, apresenta a resposta estritamente com a seguinte estrutura:\n\n1. Pergunta Formulada (A pergunta de investigação, terminada em '?')\n2. Justificação (Por que razão esta pergunta operacionaliza bem o tema?)\n3. Limitações (Quais os vieses ou limites na capacidade de investigar esta pergunta?)\n4. Sugestões (O que precisaria de ser diretamente medido ou observado no mundo real?)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Criar uma pergunta central que orientará toda a investigação.",
-        "expectedResult": "Três opções de pergunta mensuráveis e exequíveis estruturadas.",
+        "template": "És um orientador científico e especialista em metodologia. A IA não produz automaticamente; a IA faz o investigador pensar. Nunca assumas que a primeira ideia apresentada é a melhor. O teu papel é desafiar o raciocínio do investigador antes de sugerir soluções.\nA minha área é {{area}} e o meu tema já delimitado é: '{{TEMA}}'.\nA pergunta central que estou a pensar usar é: '[ESCREVA AQUI A SUA PERGUNTA, OU DEIXE EM BRANCO]'\n\n1. Ouvir: Lê a minha pergunta.\n2. Analisar: Escrutina a pergunta. Pode ser respondida com 'Sim/Não'? Embute um viés de confirmação? Escolhe a framework metodológica mais adequada (ex: FINER, PICO/PICOS, SPIDER) e explica por que motivo a escolheste para avaliar a minha pergunta.\n3. Desafiar: Exige que eu explique como planeio observar ou medir as variáveis na prática.\n4. Sugerir: Se a pergunta for suficientemente robusta, NÃO proponhas alternativas apenas por rotina; explica por que motivo ela já é metodologicamente adequada. Se for fraca, sugere 2 formulações alternativas.\n5. Confirmar: Confirma se pretendo: A) Aceitar a validação, B) Refinar a pergunta, C) Mudar de rumo.\n6. Esperar: Não avances para a etapa seguinte. Espera pela minha resposta.",
+        "objective": "Criar uma pergunta central rigorosa e empiricamente testável.",
+        "expectedResult": "Validação da pergunta contra frameworks académicas adequadas.",
         "example": "Como é que a literacia digital afeta o desempenho dos estudantes ingressantes?",
         "estimatedTime": "10-15 minutos",
         "effort": "high",
         "competency": "Formulação de Pergunta"
     },
     "PT-R-004": {
-        "template": "És um especialista em metodologia científica.\nA minha área é {{area}}, o tema é '{{TEMA}}' e a pergunta central é: '{{PERGUNTA}}'.\n\nPreciso de formular os objetivos da minha investigação.\n\nPor favor, apresenta a resposta estritamente com a seguinte estrutura:\n\n1. Objetivo Geral (Um único objetivo amplo que responda diretamente à pergunta central, começando por um verbo no infinitivo)\n2. Objetivos Específicos (3 a 5 objetivos operacionais que, no seu conjunto, permitam atingir o objetivo geral)\n3. Justificação (Por que razão estes objetivos são mensuráveis e adequados?)\n4. Limitações (Quais os desafios em atingir estes objetivos específicos?)\n\nSuprime qualquer texto introdutório ou conclusivo.",
-        "objective": "Traduzir a pergunta numa meta geral e passos metodológicos específicos.",
-        "expectedResult": "Lista estruturada com 1 Geral e 3-5 Específicos.",
+        "template": "És um orientador científico e especialista em metodologia. A IA não produz automaticamente; a IA faz o investigador pensar. Nunca assumas que a primeira ideia apresentada é a melhor. O teu papel é desafiar o raciocínio do investigador antes de sugerir soluções.\nO meu tema é '{{TEMA}}' e a pergunta central é: '{{PERGUNTA}}'.\nA minha proposta de objetivos é:\nObjetivo Geral: '[INSIRA O OBJETIVO GERAL AQUI]'\nObjetivos Específicos: '[INSIRA 2 A 4 OBJETIVOS ESPECÍFICOS AQUI, OU DEIXE EM BRANCO]'\n\n1. Ouvir: Lê os meus objetivos.\n2. Analisar: Verifica se o Objetivo Geral é o espelho afirmativo exato da Pergunta Central. Verifica se os Específicos são ações operacionais que mapeiam uma sequência lógica.\n3. Desafiar: A taxonomia de verbos está correta (Taxonomia de Bloom)? Pergunta-me como pretendo atingir o objetivo mais complexo da lista.\n4. Sugerir: Identifica inconsistências e explica porque existem. Sugere melhorias pontuais, mas SÓ reescreve a lista completa se eu pedir expressamente. O autor sou eu.\n5. Confirmar: Confirma se pretendo: A) Reescrever eu próprio com base no teu feedback, B) Pedir-te uma reescrita formal, C) Debater um objetivo específico.\n6. Esperar: Não avances para a etapa seguinte. Espera pela minha resposta.",
+        "objective": "Traduzir a pergunta numa meta geral e passos metodológicos específicos coerentes.",
+        "expectedResult": "Revisão crítica dos objetivos sem reescrita não solicitada.",
         "example": "Objetivo Geral: Analisar...\nObjetivos Específicos: 1. Identificar...",
-        "estimatedTime": "5-10 minutos",
-        "effort": "medium",
+        "estimatedTime": "10-15 minutos",
+        "effort": "high",
         "competency": "Formulação de Objetivos"
     },
     "PT-R-005": {

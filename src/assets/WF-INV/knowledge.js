@@ -9,7 +9,7 @@ Object.assign(window.KNOWLEDGE, {
     "KN-STEP-INV-02": {
         "id": "KN-STEP-INV-02",
         "learningOutcome": "Formular uma pergunta central única, neutra e passível de verificação empírica ou teórica, que orienta o estudo.",
-        "bestPractices": "Assegure-se de que a pergunta é aberta ('Como?', 'De que forma?', 'Quais os impactos?') e que não pode ser respondida com um simples 'Sim' ou 'Não'.",
+        "bestPractices": "Assegure-se de que a pergunta é aberta ('Como?', 'De que forma?', 'Quais os impactos?') e que não pode ser respondida com um simples 'Sim' ou 'Não'. Utilize a framework FINER (Factível, Interessante, Inovadora, Ética e Relevante) ou a framework PICO (População, Intervenção, Comparação, Outcome) para validar a solidez da sua pergunta.",
         "commonErrors": "Formular uma pergunta que já embute a resposta ou a conclusão que o investigador pretende provar (viés de confirmação)."
     },
     "KN-STEP-INV-03": {

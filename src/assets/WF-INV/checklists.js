@@ -3,17 +3,19 @@ Object.assign(window.CHECKLISTS, {
     "CHK-STEP-INV-01": [
         { "id": "chk-01-01", "label": "O tema identifica claramente o fenómeno a estudar?" },
         { "id": "chk-01-02", "label": "O tema especifica a população ou amostra alvo?" },
-        { "id": "chk-01-03", "label": "O tema delimita o contexto espacial/temporal?" }
+        { "id": "chk-01-03", "label": "O tema delimita o contexto espacial/temporal?" },
+        { "id": "chk-01-04", "label": "O tema está redigido como uma afirmação neutra (sem incorporar juízos de valor ou respostas antecipadas)?" }
     ],
     "CHK-STEP-INV-02": [
-        { "id": "chk-02-01", "label": "A pergunta termina com um ponto de interrogação (?) e não embute a resposta esperada?" },
-        { "id": "chk-02-02", "label": "A pergunta reflete com exatidão a população e o contexto do Tema definido na etapa anterior?" },
-        { "id": "chk-02-03", "label": "A resposta a esta pergunta requer recolha/análise de dados (não é apenas uma pesquisa no Google)?" }
+        { "id": "chk-02-01", "label": "A pergunta é passível de ser respondida com dados/evidências empíricas ou teóricas (e não apenas opinião)?" },
+        { "id": "chk-02-02", "label": "A pergunta cruza as variáveis principais do seu Tema (fenómeno e população/contexto)?" },
+        { "id": "chk-02-03", "label": "A pergunta está isenta de viés (não pressupõe ou induz o resultado esperado)?" }
     ],
     "CHK-STEP-INV-03": [
-        { "id": "chk-03-01", "label": "O Objetivo Geral reflete exatamente a Pergunta Central?" },
-        { "id": "chk-03-02", "label": "Os Objetivos Específicos são ações operacionais (ex: Medir, Identificar) e não metas finais?" },
-        { "id": "chk-03-03", "label": "Todos os objetivos começam com verbos no infinitivo?" }
+        { "id": "chk-03-01", "label": "O Objetivo Geral reflete exatamente a Pergunta Central de forma afirmativa?" },
+        { "id": "chk-03-02", "label": "Os Objetivos Específicos mapeiam uma sequência de ações metodológicas, e não apenas metas finais?" },
+        { "id": "chk-03-03", "label": "Cada objetivo começa com um único verbo claro no infinitivo (ex: evitar verbos vagos como 'conhecer' ou 'compreender')?" },
+        { "id": "chk-03-04", "label": "O conjunto de objetivos é suficiente para responder integralmente à Pergunta de Investigação?" }
     ],
     "CHK-STEP-INV-04": [
         { "id": "chk-04-01", "label": "Foram identificados sinónimos em Inglês para os conceitos centrais?" },
